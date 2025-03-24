@@ -18,7 +18,7 @@
         <div class="card-container animate-slide-up">
           <div class="flex items-center gap-6 mb-8">
             <div class="w-24 h-24 rounded-full overflow-hidden">
-              <img src="/partners/partner1.jpg" alt="Арман" class="w-full h-full object-cover">
+              <img src="/hero-img.png" alt="Арман" class="w-full h-full object-cover">
             </div>
             <div>
               <h3 class="text-xl font-bold">Арман</h3>
