@@ -1,5 +1,5 @@
 .p-checkbox {
-    @apply relative inline-flex select-none w-5 h-5
+    @apply relative inline-flex select-none w-6 h-6
 }
 
 .p-checkbox-input {
@@ -8,25 +8,24 @@
 }
 
 .p-checkbox-box {
-    @apply flex justify-center items-center rounded-sm w-5 h-5
-        border border-surface-300 dark:border-surface-700
-        bg-surface-0 dark:bg-surface-950
-        transition-colors duration-200
-        shadow-[0_1px_2px_0_rgba(18,18,23,0.05)]
+    @apply flex justify-center items-center 
+           rounded-md w-6 h-6
+           border-2 border-gray-800
+           bg-[#1A1A1A]
+           transition-all duration-200;
 }
 
 .p-checkbox-icon {
-    @apply text-surface-700 dark:text-surface-0
-        text-sm w-[0.875rem] h-[0.875rem]
-        transition-colors duration-200
+    @apply text-white
+           text-lg;
 }
 
-.p-checkbox:not(.p-disabled):has(.p-checkbox-input:hover) .p-checkbox-box {
-    @apply border-surface-400 dark:border-surface-600
+.p-checkbox:not(.p-disabled):hover .p-checkbox-box {
+    @apply border-[#D50404];
 }
 
 .p-checkbox-checked .p-checkbox-box {
-    @apply border-primary bg-primary
+    @apply border-[#D50404] bg-[#D50404];
 }
 
 .p-checkbox-checked .p-checkbox-icon {
@@ -42,7 +41,7 @@
 }
 
 .p-checkbox:not(.p-disabled):has(.p-checkbox-input:focus-visible) .p-checkbox-box {
-    @apply outline outline-1 outline-offset-2 outline-primary
+    @apply outline outline-2 outline-offset-2 outline-[#D50404];
 }
 
 .p-checkbox.p-invalid > .p-checkbox-box {

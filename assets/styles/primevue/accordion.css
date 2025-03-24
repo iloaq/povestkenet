@@ -1,58 +1,189 @@
 .p-accordionpanel {
-    @apply flex flex-col border-b border-surface-200 dark:border-surface-700
+    @apply flex flex-col mb-4 border-0;
 }
 
 .p-accordionheader {
-    @apply cursor-pointer disabled:cursor-auto flex items-center justify-between p-[1.125rem] font-semibold
-        bg-surface-0 dark:bg-surface-900
-        text-surface-500 dark:text-surface-400
-        transition-colors duration-200
+    @apply cursor-pointer 
+           flex items-center justify-between 
+           p-6 
+           font-bold 
+           bg-[#111111]
+           text-white
+           border-2
+           border-[#D50404]
+           rounded-lg
+           transition-all duration-200
+           hover:bg-[#1A1A1A];
 }
 
-.p-accordionpanel:first-child > .p-accordionheader {
-    @apply rounded-t-md
-}
-
-.p-accordionpanel:last-child > .p-accordionheader {
-    @apply rounded-b-md
-}
-
-.p-accordionpanel:last-child.p-accordionpanel-active > .p-accordionheader {
-    @apply rounded-b-md
+.p-accordionpanel:first-child > .p-accordionheader{
+    border-width: 1px;
 }
 
 .p-accordionheader-toggle-icon {
-    @apply text-surface-500 dark:text-surface-400
+    @apply text-[#D50404] text-2xl mr-4;
 }
 
-.p-accordionpanel:not(.p-disabled) .p-accordionheader:focus-visible {
-    @apply outline outline-1 outline-offset-[-1px] outline-primary
+/* Активное состояние заголовка */
+.p-accordionpanel-active > .p-accordionheader {
+    @apply bg-[#1A1A1A]
+           rounded-b-none
+           border-b-0;
 }
 
-.p-accordionpanel:not(.p-accordionpanel-active):not(.p-disabled) > .p-accordionheader:hover {
-    @apply bg-surface-0 dark:bg-surface-900 text-surface-700 dark:text-surface-0
+/* Контент аккордеона */
+.p-accordioncontent-content {
+    @apply bg-[#1A1A1A]
+           text-gray-300 
+           p-8
+           border-2
+           border-t-0
+           border-[#D50404]
+           rounded-b-lg;
 }
 
-.p-accordionpanel:not(.p-accordionpanel-active):not(.p-disabled) .p-accordionheader:hover .p-accordionheader-toggle-icon {
-    @apply text-surface-700 dark:text-surface-0
+/* Убираем лишние границы у последнего элемента */
+.p-accordionpanel:last-child .p-accordioncontent-content {
+    @apply border-b-2;
 }
 
-.p-accordionpanel:not(.p-disabled).p-accordionpanel-active > .p-accordionheader {
-    @apply bg-surface-0 dark:bg-surface-900 text-surface-700 dark:text-surface-0
+/* Стили для отзыва внутри аккордеона */
+.testimonial {
+    @apply mt-6
+           p-6
+           bg-[#252525]
+           rounded-lg
+           border
+           border-gray-800;
 }
 
-.p-accordionpanel:not(.p-disabled).p-accordionpanel-active > .p-accordionheader .p-accordionheader-toggle-icon {
-    @apply text-surface-700 dark:text-surface-0;
+.testimonial-text {
+    @apply text-gray-300
+           italic
+           text-lg
+           leading-relaxed
+           mb-4;
 }
 
-.p-accordionpanel:not(.p-disabled).p-accordionpanel-active > .p-accordionheader:hover  {
-    @apply bg-surface-0 dark:bg-surface-900 text-surface-700 dark:text-surface-0
+.testimonial-author {
+    @apply text-[#D50404]
+           font-semibold;
 }
 
-.p-accordionpanel:not(.p-disabled).p-accordionpanel-active > .p-accordionheader:hover  .p-accordionheader-toggle-icon {
-    @apply text-surface-700 dark:text-surface-0;
+/* Анимация появления контента */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .p-accordioncontent-content {
-    @apply bg-surface-0 dark:bg-surface-900 text-surface-700 dark:text-surface-0 pt-0 px-[1.125rem] pb-[1.125rem]
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Стили для иконки в заголовке */
+.p-accordionheader .pi {
+    @apply text-[#D50404] text-xl transition-transform duration-200;
+}
+
+.p-accordionpanel-active .p-accordionheader .pi {
+    @apply transform rotate-180;
+}
+
+/* Контент внутри аккордеона */
+.p-accordioncontent-content p {
+    @apply text-gray-300 leading-relaxed mb-4;
+}
+
+.p-accordioncontent-content ul {
+    @apply space-y-2;
+}
+
+.p-accordioncontent-content li {
+    @apply flex items-start gap-2 text-gray-300;
+}
+
+/* Карточки внутри аккордеона */
+.p-accordioncontent-content .card {
+    @apply bg-[#252525]
+           p-4 
+           rounded-lg 
+           border
+           border-gray-800
+           hover:border-[#D50404] 
+           transition-all 
+           duration-200;
+}
+
+/* Статистика внутри аккордеона */
+.p-accordioncontent-content .stats {
+    @apply grid grid-cols-3 
+           gap-4 
+           mt-4 
+           text-center;
+}
+
+.p-accordioncontent-content .stat-item {
+    @apply bg-[#252525]
+           p-4 
+           rounded-lg 
+           border
+           border-gray-800
+           hover:border-[#D50404]
+           transition-all 
+           duration-200;
+}
+
+.p-accordioncontent-content .stat-value {
+    @apply text-2xl 
+           font-bold 
+           text-[#D50404] 
+           mb-2;
+}
+
+.p-accordioncontent-content .stat-label {
+    @apply text-sm 
+           text-gray-300;
+}
+
+/* Дополнительные стили для вложенных элементов */
+.p-accordioncontent-content .testimonial {
+    @apply bg-[#252525]
+           p-4
+           rounded-lg
+           border
+           border-gray-800
+           my-4;
+}
+
+.p-accordioncontent-content .testimonial-text {
+    @apply text-gray-300 
+           italic;
+}
+
+.p-accordioncontent-content .testimonial-author {
+    @apply text-[#D50404]
+           mt-2
+           font-semibold;
+}
+
+/* Анимация */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
 }

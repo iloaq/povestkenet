@@ -1,0 +1,132 @@
+/* Общие стили для секций */
+.section-container {
+    @apply relative py-20 overflow-hidden;
+}
+
+.section-dark {
+    @apply bg-black text-white;
+}
+
+.section-light {
+    @apply bg-white text-gray-900;
+}
+
+/* Градиентные фоны */
+.gradient-bg-dark {
+    @apply bg-gradient-to-b from-black via-gray-900 to-black;
+}
+
+.gradient-bg-light {
+    @apply bg-gradient-to-b from-white via-gray-50 to-white;
+}
+
+/* Заголовки */
+.section-title {
+    @apply text-4xl md:text-5xl font-bold text-center mb-4;
+}
+
+.section-subtitle {
+    @apply text-lg md:text-xl text-gray-400 text-center mb-16 max-w-2xl mx-auto;
+}
+
+/* Карточки */
+.card-container {
+    @apply bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 
+           hover:border-[#D50404]/50 transition-all duration-300
+           hover:shadow-lg hover:shadow-[#D50404]/10;
+}
+
+.card-title {
+    @apply text-2xl font-bold mb-4;
+}
+
+.card-price {
+    @apply text-[#D50404] text-4xl font-bold mb-6;
+}
+
+/* Кнопки */
+.btn-primary {
+    @apply bg-[#D50404] text-white px-8 py-3 rounded-lg font-bold
+           hover:bg-[#FF0000] transition-all duration-300
+           focus:ring-4 focus:ring-[#D50404]/30;
+}
+
+.btn-outline {
+    @apply border-2 border-[#D50404] text-[#D50404] px-8 py-3 rounded-lg font-bold
+           hover:bg-[#D50404] hover:text-white transition-all duration-300
+           focus:ring-4 focus:ring-[#D50404]/30;
+}
+
+/* Списки */
+.feature-list {
+    @apply space-y-4 mb-8;
+}
+
+.feature-item {
+    @apply flex items-center gap-3 text-gray-300;
+}
+
+/* Таблицы */
+.custom-table {
+    @apply w-full border-collapse;
+}
+
+.custom-table th {
+    @apply bg-gray-900 text-white p-4 text-left border-b border-gray-800;
+}
+
+.custom-table td {
+    @apply p-4 border-b border-gray-800;
+}
+
+/* Анимации */
+.animate-fade-in {
+    @apply opacity-0 animate-[fadeIn_1s_ease-in_forwards];
+}
+
+.animate-slide-up {
+    @apply opacity-0 translate-y-10 animate-[slideUp_1s_ease-out_forwards];
+}
+
+/* Утилиты */
+.glassmorphism-dark {
+    @apply bg-black/40 backdrop-blur-xl border border-white/10
+           hover:border-[#D50404]/30 transition-all duration-300;
+}
+
+.glassmorphism-light {
+    @apply bg-white/40 backdrop-blur-xl border border-black/10
+           hover:border-[#D50404]/30 transition-all duration-300;
+}
+
+/* Медиа запросы */
+@screen md {
+    .section-container {
+        @apply py-32;
+    }
+    
+    .card-container {
+        @apply p-10;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
