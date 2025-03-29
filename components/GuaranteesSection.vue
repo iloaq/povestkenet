@@ -24,10 +24,6 @@
           <ul class="space-y-3">
             <li class="flex items-center gap-2">
               <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Финансовая поддержка</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
               <span>Маркетинговая помощь</span>
             </li>
             <li class="flex items-center gap-2">
@@ -71,10 +67,6 @@
             <li class="flex items-center gap-2">
               <i class="pi pi-check-circle text-[#D50404]"></i>
               <span>Новые методики</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Обновление ПО</span>
             </li>
             <li class="flex items-center gap-2">
               <i class="pi pi-check-circle text-[#D50404]"></i>

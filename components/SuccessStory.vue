@@ -28,8 +28,8 @@
 
           <div class="space-y-6">
             <div class="bg-black/30 p-4 rounded-lg">
-              <div class="text-sm text-gray-400">Доход за первый месяц</div>
-              <div class="text-2xl font-bold text-[#D50404]">2 800 000 ₸</div>
+              <div class="text-sm text-gray-400">Доход за первые 2 месяца</div>
+              <div class="text-2xl font-bold text-[#D50404]">3 800 000 ₸</div>
             </div>
 
             <div class="space-y-4">
@@ -76,7 +76,7 @@
                   </div>
                   <div>
                     <div class="font-bold">Первая прибыль</div>
-                    <div class="text-sm text-gray-400">2 800 000₸ в первый месяц</div>
+                    <div class="text-sm text-gray-400">3 800 000₸ в первые 2 месяца</div>
                   </div>
                 </div>
               </div>

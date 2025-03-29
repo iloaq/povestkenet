@@ -14,192 +14,108 @@
       </div>
 
       <!-- Основные пакеты -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        <!-- Стандартный пакет -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.1s">
-          <div class="text-center mb-8">
-            <div class="w-16 h-16 rounded-full bg-[#D50404]/10 flex items-center justify-center mx-auto mb-4">
-              <i class="pi pi-star text-[#D50404] text-2xl"></i>
-            </div>
-            <h3 class="text-2xl font-bold mb-4">Стандарт</h3>
-            <div class="card-price">
-              <span class="text-4xl font-bold">2 500 000₸</span>
-              <span class="text-gray-400">/ единоразово</span>
-            </div>
-            <p class="text-gray-400 mt-4">Идеально для начинающих предпринимателей</p>
-          </div>
-
-          <ul class="feature-list space-y-4 mb-8">
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>Базовое обучение (3 дня)</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>Стандартный пакет документов</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>Базовые маркетинговые материалы</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>Поддержка в рабочее время</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>Доступ к базовой CRM</span>
-            </li>
-          </ul>
-
-          <div class="text-center">
-            <button class="btn-outline w-full" @click="$emit('scroll-to-form')">
-              Выбрать пакет
-            </button>
-          </div>
-        </div>
-
-        <!-- Премиум пакет -->
-        <div class="card-container animate-slide-up transform scale-105" style="animation-delay: 0.2s">
+      <div class="grid grid-cols-1 gap-8 max-w-3xl mx-auto">
+        <!-- Премиальный пакет -->
+        <div class="card-container animate-slide-up transform scale-105">
           <div class="absolute top-0 right-0 bg-[#D50404] text-white px-4 py-1 rounded-bl-lg text-sm">
-            Популярный выбор
+            Эксклюзивное предложение
           </div>
           
           <div class="text-center mb-8">
             <div class="w-16 h-16 rounded-full bg-[#D50404]/20 flex items-center justify-center mx-auto mb-4">
               <i class="pi pi-crown text-[#D50404] text-2xl"></i>
             </div>
-            <h3 class="text-2xl font-bold mb-4">Премиум</h3>
+            <h3 class="text-2xl font-bold mb-4">Премиальный пакет</h3>
             <div class="card-price">
-              <span class="text-4xl font-bold">3 500 000₸</span>
+              <span class="text-4xl font-bold">7 000 000₸</span>
               <span class="text-gray-400">/ единоразово</span>
             </div>
-            <p class="text-gray-400 mt-4">Оптимальный выбор для быстрого старта</p>
+            <p class="text-gray-400 mt-4">Полный комплект для максимально быстрого старта</p>
           </div>
 
           <ul class="feature-list space-y-4 mb-8">
             <li class="flex items-center gap-3">
               <i class="pi pi-check text-[#D50404]"></i>
-              <span>Расширенное обучение (5 дней)</span>
+              <span>Индивидуальное VIP обучение (7 дней)</span>
             </li>
             <li class="flex items-center gap-3">
               <i class="pi pi-check text-[#D50404]"></i>
-              <span>Полный пакет документов</span>
+              <span>Полный пакет юридических документов</span>
             </li>
             <li class="flex items-center gap-3">
               <i class="pi pi-check text-[#D50404]"></i>
-              <span>Расширенные маркетинговые материалы</span>
+              <span>Премиальные маркетинговые материалы</span>
             </li>
             <li class="flex items-center gap-3">
               <i class="pi pi-check text-[#D50404]"></i>
-              <span>Поддержка 24/7</span>
+              <span>Круглосуточная поддержка 24/7</span>
             </li>
             <li class="flex items-center gap-3">
               <i class="pi pi-check text-[#D50404]"></i>
-              <span>Доступ к премиум CRM</span>
+              <span>Доступ к расширенной CRM-системе</span>
             </li>
             <li class="flex items-center gap-3">
               <i class="pi pi-check text-[#D50404]"></i>
-              <span>Персональный менеджер</span>
+              <span>Персональный менеджер проекта</span>
             </li>
             <li class="flex items-center gap-3">
               <i class="pi pi-check text-[#D50404]"></i>
-              <span>Гарантия прибыли 2.8M₸</span>
+              <span>Гарантия прибыли от 3.5M₸ в месяц</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="pi pi-check text-[#D50404]"></i>
+              <span>Эксклюзивная территория</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="pi pi-check text-[#D50404]"></i>
+              <span>Готовая база клиентов</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="pi pi-check text-[#D50404]"></i>
+              <span>Бизнес под ключ за 30 дней</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="pi pi-check text-[#D50404]"></i>
+              <span>Полная автоматизация процессов</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="pi pi-check text-[#D50404]"></i>
+              <span>Доступ к базе поставщиков</span>
             </li>
           </ul>
 
           <div class="text-center">
             <button class="btn-primary w-full" @click="$emit('scroll-to-form')">
-              Выбрать пакет
-            </button>
-          </div>
-        </div>
-
-        <!-- VIP пакет -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.3s">
-          <div class="text-center mb-8">
-            <div class="w-16 h-16 rounded-full bg-[#D50404]/30 flex items-center justify-center mx-auto mb-4">
-              <i class="pi pi-gem text-[#D50404] text-2xl"></i>
-            </div>
-            <h3 class="text-2xl font-bold mb-4">VIP</h3>
-            <div class="card-price">
-              <span class="text-4xl font-bold">5 000 000₸</span>
-              <span class="text-gray-400">/ единоразово</span>
-            </div>
-            <p class="text-gray-400 mt-4">Максимальные возможности для роста</p>
-          </div>
-
-          <ul class="feature-list space-y-4 mb-8">
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>VIP обучение (7 дней)</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>Расширенный пакет документов</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>VIP маркетинговые материалы</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>Поддержка 24/7</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>Доступ к VIP CRM</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>Персональный менеджер</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>Гарантия прибыли 3.5M₸</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>Приоритетная поддержка</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i class="pi pi-check text-[#D50404]"></i>
-              <span>Эксклюзивные бонусы</span>
-            </li>
-          </ul>
-
-          <div class="text-center">
-            <button class="btn-outline w-full" @click="$emit('scroll-to-form')">
-              Выбрать пакет
+              Получить предложение
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Дополнительные преимущества -->
+      <!-- Преимущества -->
       <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
         <div class="card-container animate-slide-up" style="animation-delay: 0.4s">
           <div class="w-12 h-12 rounded-full bg-[#D50404]/10 flex items-center justify-center mb-4">
             <i class="pi pi-shield text-[#D50404] text-xl"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2">Гарантия возврата</h3>
-          <p class="text-gray-400">Возврат инвестиций в течение 3 месяцев или деньги обратно</p>
+          <h3 class="text-xl font-bold mb-2">Гарантия результата</h3>
+          <p class="text-gray-400">Гарантированный доход от 3.5 млн тенге в месяц или возврат инвестиций</p>
         </div>
 
         <div class="card-container animate-slide-up" style="animation-delay: 0.5s">
           <div class="w-12 h-12 rounded-full bg-[#D50404]/10 flex items-center justify-center mb-4">
-            <i class="pi pi-users text-[#D50404] text-xl"></i>
+            <i class="pi pi-clock text-[#D50404] text-xl"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2">Сообщество партнеров</h3>
-          <p class="text-gray-400">Доступ к закрытому сообществу успешных предпринимателей</p>
+          <h3 class="text-xl font-bold mb-2">Быстрый запуск</h3>
+          <p class="text-gray-400">Полностью готовый бизнес через 30 дней после подписания договора</p>
         </div>
 
         <div class="card-container animate-slide-up" style="animation-delay: 0.6s">
           <div class="w-12 h-12 rounded-full bg-[#D50404]/10 flex items-center justify-center mb-4">
-            <i class="pi pi-chart-line text-[#D50404] text-xl"></i>
+            <i class="pi pi-users text-[#D50404] text-xl"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2">Быстрый старт</h3>
-          <p class="text-gray-400">Запуск бизнеса через 30 дней после подписания договора</p>
+          <h3 class="text-xl font-bold mb-2">Поддержка 24/7</h3>
+          <p class="text-gray-400">Персональный менеджер и круглосуточная поддержка на всех этапах</p>
         </div>
       </div>
 

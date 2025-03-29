@@ -17,10 +17,16 @@
         <!-- Карта -->
         <div class="card-container animate-slide-up" style="animation-delay: 0.1s">
           <div class="relative h-[500px] rounded-lg overflow-hidden">
-            <!-- Здесь будет карта Казахстана -->
-            <div class="absolute inset-0 bg-[url('/kz-map.svg')] bg-contain bg-center bg-no-repeat opacity-20"></div>
+            <!-- Карта Казахстана -->
+            <div class="absolute inset-0">
+              <img 
+                src="/kz-map.svg" 
+                alt="Карта Казахстана" 
+                class="w-full h-full object-contain"
+              />
+            </div>
             
-            <!-- Точки на карте -->
+            <!-- Точки городов -->
             <div 
               v-for="city in cities" 
               :key="city.name"
@@ -29,7 +35,7 @@
               @click="selectedCity = city"
             >
               <div class="relative">
-                <div class="w-4 h-4 rounded-full bg-[#D50404]"></div>
+                <div class="w-4 h-4 rounded-full bg-[#D50404] animate-pulse"></div>
                 <div 
                   class="absolute left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-black/80 rounded-lg text-sm whitespace-nowrap"
                   :class="{ 'opacity-100': selectedCity?.name === city.name, 'opacity-0': selectedCity?.name !== city.name }"
@@ -38,6 +44,18 @@
                 </div>
               </div>
             </div>
+
+            <!-- Линии между городами -->
+            <svg class="absolute inset-0 pointer-events-none">
+              <path 
+                v-for="(city, index) in cities" 
+                :key="city.name"
+                :d="`M ${city.x * 8} ${city.y * 6} L ${cities[(index + 1) % cities.length].x * 8} ${cities[(index + 1) % cities.length].y * 6}`"
+                stroke="rgba(213,4,4,0.2)"
+                stroke-width="1"
+                fill="none"
+              />
+            </svg>
           </div>
         </div>
 
@@ -111,8 +129,8 @@ const selectedCity = ref(null)
 const cities = [
   {
     name: 'Алматы',
-    x: 75,
-    y: 40,
+    x: 82,
+    y: 75,
     population: 2000000,
     available: 60,
     potentialProfit: 3500000,
@@ -124,23 +142,9 @@ const cities = [
     ]
   },
   {
-    name: 'Астана',
-    x: 65,
-    y: 30,
-    population: 1200000,
-    available: 75,
-    potentialProfit: 3000000,
-    advantages: [
-      'Столица государства',
-      'Растущий рынок',
-      'Современная инфраструктура',
-      'Высокий уровень жизни'
-    ]
-  },
-  {
     name: 'Шымкент',
-    x: 70,
-    y: 45,
+    x: 60,
+    y: 85,
     population: 1000000,
     available: 85,
     potentialProfit: 2500000,
@@ -152,8 +156,22 @@ const cities = [
     ]
   },
   {
+    name: 'Астана',
+    x: 58,
+    y: 25,
+    population: 1200000,
+    available: 75,
+    potentialProfit: 3000000,
+    advantages: [
+      'Столица государства',
+      'Растущий рынок',
+      'Современная инфраструктура',
+      'Высокий уровень жизни'
+    ]
+  },
+  {
     name: 'Караганда',
-    x: 60,
+    x: 65,
     y: 35,
     population: 500000,
     available: 90,
@@ -167,8 +185,8 @@ const cities = [
   },
   {
     name: 'Актобе',
-    x: 55,
-    y: 40,
+    x: 25,
+    y: 35,
     population: 400000,
     available: 95,
     potentialProfit: 1800000,
@@ -177,6 +195,216 @@ const cities = [
       'Низкая конкуренция',
       'Доступные цены',
       'Благоприятные условия для бизнеса'
+    ]
+  },
+  {
+    name: 'Тараз',
+    x: 65,
+    y: 80,
+    population: 350000,
+    available: 90,
+    potentialProfit: 1700000,
+    advantages: [
+      'Исторический центр',
+      'Развивающийся рынок',
+      'Доступные цены',
+      'Благоприятный климат'
+    ]
+  },
+  {
+    name: 'Павлодар',
+    x: 75,
+    y: 20,
+    population: 330000,
+    available: 95,
+    potentialProfit: 1600000,
+    advantages: [
+      'Промышленный центр',
+      'Стабильный рынок',
+      'Доступные офисы',
+      'Развитая инфраструктура'
+    ]
+  },
+  {
+    name: 'Өскемен',
+    x: 85,
+    y: 35,
+    population: 320000,
+    available: 95,
+    potentialProfit: 1600000,
+    advantages: [
+      'Промышленный центр',
+      'Высокий уровень жизни',
+      'Развитая инфраструктура',
+      'Благоприятный климат'
+    ]
+  },
+  {
+    name: 'Семей',
+    x: 80,
+    y: 30,
+    population: 300000,
+    available: 95,
+    potentialProfit: 1500000,
+    advantages: [
+      'Исторический центр',
+      'Развивающийся рынок',
+      'Доступные цены',
+      'Благоприятный климат'
+    ]
+  },
+  {
+    name: 'Атырау',
+    x: 15,
+    y: 45,
+    population: 280000,
+    available: 95,
+    potentialProfit: 1400000,
+    advantages: [
+      'Нефтяной центр',
+      'Высокая платежеспособность',
+      'Развитая инфраструктура',
+      'Стабильный рынок'
+    ]
+  },
+  {
+    name: 'Қостанай',
+    x: 40,
+    y: 15,
+    population: 270000,
+    available: 95,
+    potentialProfit: 1400000,
+    advantages: [
+      'Аграрный центр',
+      'Развивающийся рынок',
+      'Доступные цены',
+      'Благоприятный климат'
+    ]
+  },
+  {
+    name: 'Петропавл',
+    x: 45,
+    y: 10,
+    population: 260000,
+    available: 95,
+    potentialProfit: 1300000,
+    advantages: [
+      'Северный центр',
+      'Стабильный рынок',
+      'Доступные офисы',
+      'Развитая инфраструктура'
+    ]
+  },
+  {
+    name: 'Орал',
+    x: 12,
+    y: 25,
+    population: 250000,
+    available: 95,
+    potentialProfit: 1300000,
+    advantages: [
+      'Западный центр',
+      'Развивающийся рынок',
+      'Доступные цены',
+      'Благоприятный климат'
+    ]
+  },
+  {
+    name: 'Түркістан',
+    x: 55,
+    y: 82,
+    population: 240000,
+    available: 95,
+    potentialProfit: 1200000,
+    advantages: [
+      'Исторический центр',
+      'Туристический потенциал',
+      'Развивающийся рынок',
+      'Благоприятный климат'
+    ]
+  },
+  {
+    name: 'Көкшетау',
+    x: 52,
+    y: 20,
+    population: 230000,
+    available: 95,
+    potentialProfit: 1200000,
+    advantages: [
+      'Северный центр',
+      'Стабильный рынок',
+      'Доступные офисы',
+      'Развитая инфраструктура'
+    ]
+  },
+  {
+    name: 'Талдықорған',
+    x: 78,
+    y: 65,
+    population: 220000,
+    available: 95,
+    potentialProfit: 1100000,
+    advantages: [
+      'Южный центр',
+      'Развивающийся рынок',
+      'Доступные цены',
+      'Благоприятный климат'
+    ]
+  },
+  {
+    name: 'Екібастұз',
+    x: 70,
+    y: 25,
+    population: 210000,
+    available: 95,
+    potentialProfit: 1100000,
+    advantages: [
+      'Промышленный центр',
+      'Стабильный рынок',
+      'Доступные офисы',
+      'Развитая инфраструктура'
+    ]
+  },
+  {
+    name: 'Қызылорда',
+    x: 45,
+    y: 70,
+    population: 200000,
+    available: 95,
+    potentialProfit: 1000000,
+    advantages: [
+      'Южный центр',
+      'Развивающийся рынок',
+      'Доступные цены',
+      'Благоприятный климат'
+    ]
+  },
+  {
+    name: 'Ақтау',
+    x: 10,
+    y: 60,
+    population: 190000,
+    available: 95,
+    potentialProfit: 1000000,
+    advantages: [
+      'Приморский город',
+      'Туристический потенциал',
+      'Развивающийся рынок',
+      'Благоприятный климат'
+    ]
+  },
+  {
+    name: 'Теміртау',
+    x: 62,
+    y: 32,
+    population: 180000,
+    available: 95,
+    potentialProfit: 900000,
+    advantages: [
+      'Промышленный центр',
+      'Стабильный рынок',
+      'Доступные офисы',
+      'Развитая инфраструктура'
     ]
   }
 ]

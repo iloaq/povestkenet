@@ -60,7 +60,7 @@
         <div class="card-container animate-slide-up" style="animation-delay: 0.4s">
           <div class="flex items-center gap-3 mb-3">
             <i class="pi pi-check-circle text-[#D50404] text-xl"></i>
-            <h4 class="font-bold">Без вложений</h4>
+            <h4 class="font-bold">Минимальные вложения</h4>
           </div>
           <p class="text-sm text-gray-400">Не требует больших инвестиций в оборудование</p>
         </div>
@@ -68,9 +68,9 @@
         <div class="card-container animate-slide-up" style="animation-delay: 0.5s">
           <div class="flex items-center gap-3 mb-3">
             <i class="pi pi-check-circle text-[#D50404] text-xl"></i>
-            <h4 class="font-bold">Онлайн</h4>
+            <h4 class="font-bold">Универсальность</h4>
           </div>
-          <p class="text-sm text-gray-400">Работа из любой точки мира</p>
+          <p class="text-sm text-gray-400">Наш бизнес-модель может быть успешно реализован в любом регионе, где присутствует военкомат</p>
         </div>
 
         <div class="card-container animate-slide-up" style="animation-delay: 0.6s">

@@ -174,11 +174,6 @@ const metrics = [
     comment: 'Полная поддержка'
   },
   { 
-    label: 'Прибыль', 
-    value: '2.5М₸',
-    comment: 'В первый месяц'
-  },
-  { 
     label: 'Поддержка', 
     value: '24/7',
     comment: 'Всегда на связи'

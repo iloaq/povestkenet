@@ -48,8 +48,22 @@
             <label class="block text-sm font-medium mb-2">Средний чек (₸)</label>
             <InputNumber
               v-model="averageCheck"
-              :min="100000"
-              :max="1000000"
+              :min="4000000"
+              :max="7000000"
+              :step="500000"
+              class="w-full"
+              :useGrouping="true"
+              suffix=" ₸"
+            />
+          </div>
+
+          <!-- Дополнительный чек -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium mb-2">Дополнительный чек (₸)</label>
+            <InputNumber
+              v-model="additionalCheck"
+              :min="50000"
+              :max="500000"
               :step="50000"
               class="w-full"
               :useGrouping="true"
@@ -57,21 +71,13 @@
             />
           </div>
 
-          <!-- Дополнительные услуги -->
-          <div class="mb-6">
-            <label class="block text-sm font-medium mb-2">Дополнительные услуги</label>
-            <div class="space-y-2">
-              <div v-for="service in additionalServices" :key="service.name" class="flex items-center gap-2">
-                <Checkbox
-                  v-model="service.selected"
-                  :binary="true"
-                  class="!w-5 !h-5"
-                />
-                <span class="text-sm">{{ service.name }}</span>
-                <span class="text-sm text-[#D50404] ml-auto">+{{ service.price.toLocaleString() }} ₸</span>
-              </div>
-            </div>
-          </div>
+          <!-- Кнопка получения детального расчета -->
+          <button 
+            class="btn-primary w-full py-3"
+            @click="$emit('scroll-to-form')"
+          >
+            Получить детальный расчет
+          </button>
         </div>
 
         <!-- Результаты расчета -->
@@ -84,13 +90,32 @@
               <span class="text-gray-400">Выручка</span>
               <span class="text-xl font-bold">{{ totalRevenue.toLocaleString() }} ₸</span>
             </div>
-            <div class="flex justify-between items-center">
-              <span class="text-gray-400">Расходы</span>
-              <span class="text-xl font-bold text-[#D50404]">-{{ totalExpenses.toLocaleString() }} ₸</span>
+            
+            <!-- Детализация расходов -->
+            <div class="bg-black/20 rounded-lg p-4 space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-400">Аренда офиса</span>
+                <span class="text-sm">-150 000 ₸</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-400">Реклама</span>
+                <span class="text-sm">-500 000 ₸</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-400">Прочие расходы</span>
+                <span class="text-sm">-1 950 000 ₸</span>
+              </div>
+              <div class="border-t border-gray-800 pt-2 mt-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-sm font-medium">Итого расходы</span>
+                  <span class="text-sm font-medium text-[#D50404]">-{{ totalExpenses.toLocaleString() }} ₸</span>
+                </div>
+              </div>
             </div>
+
             <div class="border-t border-gray-800 pt-4">
               <div class="flex justify-between items-center">
-                <span class="text-lg font-bold">Чистая прибыль</span>
+                <span class="text-lg font-bold">Чистая прибыль (50%)</span>
                 <span class="text-2xl font-bold text-[#D50404]">{{ netProfit.toLocaleString() }} ₸</span>
               </div>
             </div>
@@ -98,19 +123,11 @@
 
           <!-- График роста -->
           <div class="mb-8">
-            <h4 class="font-bold mb-4">Прогноз роста прибыли</h4>
-            <div class="h-40 bg-black/30 rounded-lg p-4">
+            <h4 class="font-bold mb-4">Прогноз прибыли с учетом сезонности</h4>
+            <div class=" bg-black/30 rounded-lg p-4">
               <Chart type="line" :data="chartData" :options="chartOptions" />
             </div>
           </div>
-
-          <!-- Кнопка получения детального расчета -->
-          <button 
-            class="btn-primary w-full py-3"
-            @click="$emit('scroll-to-form')"
-          >
-            Получить детальный расчет
-          </button>
         </div>
       </div>
     </div>
@@ -122,8 +139,9 @@ import { ref, computed } from 'vue'
 import Chart from 'primevue/chart'
 
 const selectedCity = ref(null)
-const clientsCount = ref(5)
-const averageCheck = ref(535000)
+const clientsCount = ref(10)
+const averageCheck = ref(500000)
+const additionalCheck = ref(200000)
 
 const cities = [
   { name: 'Алматы' },
@@ -134,23 +152,25 @@ const cities = [
 ]
 
 const additionalServices = ref([
-  { name: 'Консультация по телефону', price: 50000, selected: false },
-  { name: 'Выезд к клиенту', price: 100000, selected: false },
-  { name: 'Срочное решение', price: 150000, selected: false },
-  { name: 'Дополнительная консультация', price: 75000, selected: false }
+  { name: 'Консультация по телефону', price: 50000, selected: true },
+  { name: 'Выезд к клиенту', price: 100000, selected: true },
+  { name: 'Срочное решение', price: 150000, selected: true },
+  { name: 'Дополнительная консультация', price: 75000, selected: true }
 ])
 
 // Расчеты
 const totalRevenue = computed(() => {
-  return clientsCount.value * averageCheck.value
+  const baseRevenue = clientsCount.value * averageCheck.value
+  const additionalRevenue = clientsCount.value * additionalCheck.value
+  return baseRevenue + additionalRevenue
 })
 
 const totalExpenses = computed(() => {
-  const baseExpenses = 500000 // Базовые расходы
-  const additionalExpenses = additionalServices.value
-    .filter(service => service.selected)
-    .reduce((sum, service) => sum + service.price, 0)
-  return baseExpenses + additionalExpenses
+  const officeRent = 150000 // Аренда офиса
+  const marketing = 500000 // Реклама
+  const other = 1950000 // Прочие расходы (включая зарплату, коммунальные и т.д.)
+  
+  return officeRent + marketing + other
 })
 
 const netProfit = computed(() => {
@@ -159,10 +179,11 @@ const netProfit = computed(() => {
 
 // Данные для графика
 const chartData = computed(() => {
-  const months = ['Месяц 1', 'Месяц 2', 'Месяц 3', 'Месяц 4', 'Месяц 5', 'Месяц 6']
+  const months = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн']
+  const seasonalFactors = [0.8, 0.9, 1.0, 1.1, 1.2, 1.1] // Сезонные коэффициенты
   const profit = months.map((_, index) => {
-    const growth = 1 + (index * 0.2) // 20% рост каждый месяц
-    return Math.round(netProfit.value * growth)
+    const seasonalRevenue = totalRevenue.value * seasonalFactors[index]
+    return Math.round(seasonalRevenue - totalExpenses.value) // Прибыль с учетом расходов
   })
 
   return {
@@ -233,25 +254,6 @@ defineEmits(['scroll-to-form'])
   border-radius: 3px;
 }
 
-:deep(.p-dropdown) {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-}
-
-:deep(.p-dropdown-panel) {
-  background: #1F2937;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-}
-
-:deep(.p-dropdown-item) {
-  color: white;
-}
-
-:deep(.p-dropdown-item:hover) {
-  background: rgba(213, 4, 4, 0.1);
-}
 
 :deep(.p-inputnumber) {
   background: rgba(255, 255, 255, 0.05);
@@ -263,24 +265,4 @@ defineEmits(['scroll-to-form'])
   color: white;
 }
 
-:deep(.p-checkbox) {
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-}
-
-:deep(.p-checkbox.p-highlight) {
-  background: #D50404;
-  border-color: #D50404;
-}
-
-:deep(.p-checkbox .p-checkbox-box) {
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-:deep(.p-checkbox.p-highlight .p-checkbox-box) {
-  background: #D50404;
-  border-color: #D50404;
-}
 </style> 
