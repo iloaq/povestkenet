@@ -6,9 +6,6 @@ const config = require('./nuxt.config.js');
 // Создаем новое express приложение
 const app = express();
 
-// Слушаем порт 3000 или PORT из переменных окружения
-app.listen(process.env.PORT || 3000);
-
 // Включаем production режим
 config.dev = false;
 
@@ -18,8 +15,23 @@ const nuxt = new Nuxt(config);
 // Добавляем middleware nuxt
 app.use(nuxt.render);
 
-// Автоматическая сборка при старте
-new Builder(nuxt).build().catch(err => {
-  console.error(err);
-  process.exit(1);
-});
+// Слушаем порт из переменных окружения Plesk
+const port = process.env.PORT || 3000;
+
+// Сборка и запуск приложения
+async function start() {
+  try {
+    // Собираем приложение
+    await new Builder(nuxt).build();
+    
+    // Запускаем сервер
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  } catch (err) {
+    console.error('Error starting server:', err);
+    process.exit(1);
+  }
+}
+
+start();

@@ -23,6 +23,17 @@
     --p-surface-900: #18181b;
     --p-surface-950: #09090b;
     --p-content-0: rgba(36, 36, 36, 1);
+    --p-select-background: rgba(40,40,40,1);
+    --p-select-border-color: rgba(255,255,255,0.15);
+    --p-select-border-radius: 12px;
+    --p-select-padding-y: 12px;
+    --p-select-padding-x: 14px;
+    --p-select-list-padding: 14px;
+    --p-select-list-gap: 10px;
+    --p-select-option-selected-color: #EFEFEF;
+    --p-select-option-focus-color: #D50404;
+    --p-select-option-selected-focus-color: #EFEFEF;
+    --p-select-dropdown-width: 50px;
 }
 
 /* Light */

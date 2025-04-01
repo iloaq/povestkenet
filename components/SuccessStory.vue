@@ -1,120 +1,94 @@
 <template>
-  <section class="section-container section-dark">
-    <!-- Фоновые элементы -->
-    <div class="absolute inset-0">
-      <div class="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] opacity-5"></div>
-      <div class="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[#D50404] rounded-full opacity-10 blur-[100px]"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(213,4,4,0.1),transparent_50%)]"></div>
-    </div>
-
-    <div class="container mx-auto px-4 py-20 relative z-10">
-      <div class="text-center mb-16 animate-fade-in">
-        <h2 class="section-title">История успеха</h2>
-        <p class="section-subtitle">Реальная история нашего первого партнера</p>
+  <section class="relative min-h-screen flex items-center  overflow-hidden -mt-32 pt-32 py-12 md:py-16">
+    <!-- Фоновые эффекты -->
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <!-- Заголовок -->
+      <div class="text-center mb-8 md:mb-12 lg:mb-16">
+        <h2 class="text-2xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6">
+          <span class="text-white/90">{{ $t('successStory.title1') }}</span>
+          <span class="bg-gradient-to-r from-[#D50404] to-[#FF0000] bg-clip-text text-transparent">{{ $t('successStory.title2') }}</span>
+        </h2>
+        <p class="text-base md:text-xl text-white/60">{{ $t('successStory.description') }}</p>
       </div>
 
       <div class="max-w-4xl mx-auto">
         <!-- История успеха -->
-        <div class="card-container animate-slide-up">
-          <div class="flex items-center gap-6 mb-8">
-            <div class="w-24 h-24 rounded-full overflow-hidden">
-              <img src="/hero-img.png" alt="Арман" class="w-full h-full object-cover">
+        <div class="group bg-white/[0.03] backdrop-blur-xl rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 border border-white/[0.05] shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:bg-white/[0.05] transition-all duration-300 card-container">
+          <!-- Профиль -->
+          <div class="flex items-center gap-3 md:gap-6 mb-6 md:mb-8">
+            <div class="w-16 h-16 md:w-24 md:h-24 rounded-lg md:rounded-xl overflow-hidden bg-gradient-to-r from-[#D50404] to-[#FF0000]">
+              <div class="w-full h-full rounded-lg md:rounded-xl overflow-hidden">
+                <img src="/hero-img.png" alt="Давид" class="w-full h-full object-contain scale-125">
+              </div>
             </div>
             <div>
-              <h3 class="text-xl font-bold">Арман</h3>
-              <p class="text-gray-400">Петропавловск</p>
+              <h3 class="text-xl md:text-2xl font-bold text-white/90">Давид</h3>
+              <p class="text-sm md:text-base text-white/60">Петропавловск</p>
             </div>
           </div>
 
-          <div class="space-y-6">
-            <div class="bg-black/30 p-4 rounded-lg">
-              <div class="text-sm text-gray-400">Доход за первые 2 месяца</div>
-              <div class="text-2xl font-bold text-[#D50404]">3 800 000 ₸</div>
+          <!-- Доход -->
+          <div class="bg-gradient-to-r from-[#D50404]/10 to-transparent p-4 md:p-6 rounded-lg md:rounded-xl mb-6 md:mb-8 border border-[#D50404]/20">
+            <div class="text-xs md:text-sm text-white/60 mb-1">{{ $t('successStory.income') }}</div>
+            <div class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#D50404] to-[#FF0000] bg-clip-text text-transparent">
+              3 800 000 ₸
             </div>
+          </div>
 
-            <div class="space-y-4">
-              <h4 class="font-bold">История успеха:</h4>
-              <p class="text-gray-400">
-                "Я начал с нуля, без опыта в юридической сфере. Уже через 30 дней получил первую прибыль 2 800 000₸. Команда поддержки помогла на каждом этапе. Сейчас у нас работает команда из 5 человек, и мы планируем открыть второй офис."
-              </p>
-            </div>
+          <!-- История -->
+          <div class="space-y-4 md:space-y-6 mb-6 md:mb-8">
+            <h4 class="text-lg md:text-xl font-bold text-white/90">{{ $t('successStory.history') }}</h4>
+            <p class="text-base md:text-lg text-white/70 leading-relaxed">
+              {{ $t('successStory.historyText') }}
+            </p>
+          </div>
 
-            <!-- Путь к успеху -->
-            <div class="space-y-4">
-              <h4 class="font-bold">Путь к успеху:</h4>
-              <div class="space-y-4">
-                <div class="flex items-center gap-4">
-                  <div class="w-8 h-8 rounded-full bg-[#D50404]/10 flex items-center justify-center">
-                    <i class="pi pi-file-edit text-[#D50404]"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold">Подписание договора</div>
-                    <div class="text-sm text-gray-400">1 марта 2023</div>
-                  </div>
+          <!-- Путь к успеху -->
+          <div class="space-y-4 md:space-y-6 mb-8 md:mb-12">
+            <h4 class="text-lg md:text-xl font-bold text-white/90">{{ $t('successStory.path') }}</h4>
+            <div class="space-y-4 md:space-y-6">
+              <div v-for="(item, index) in ['historyItem1', 'historyItem2', 'historyItem3', 'historyItem4']" 
+                   :key="index"
+                   class="flex items-center gap-3 md:gap-4">
+                <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-gradient-to-r from-[#D50404] to-[#FF0000] flex items-center justify-center transform group-hover:scale-110 transition-all duration-300">
+                  <i :class="`pi pi-${['file-edit', 'book', 'flag', 'chart-line'][index]} text-white text-lg md:text-xl`"></i>
                 </div>
-                <div class="flex items-center gap-4">
-                  <div class="w-8 h-8 rounded-full bg-[#D50404]/10 flex items-center justify-center">
-                    <i class="pi pi-book text-[#D50404]"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold">Обучение</div>
-                    <div class="text-sm text-gray-400">5 дней интенсивного обучения</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-4">
-                  <div class="w-8 h-8 rounded-full bg-[#D50404]/10 flex items-center justify-center">
-                    <i class="pi pi-flag text-[#D50404]"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold">Запуск бизнеса</div>
-                    <div class="text-sm text-gray-400">30 марта 2023</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-4">
-                  <div class="w-8 h-8 rounded-full bg-[#D50404]/10 flex items-center justify-center">
-                    <i class="pi pi-chart-line text-[#D50404]"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold">Первая прибыль</div>
-                    <div class="text-sm text-gray-400">3 800 000₸ в первые 2 месяца</div>
-                  </div>
+                <div>
+                  <div class="text-base md:text-lg font-bold text-white/90">{{ $t(`successStory.${item}`) }}</div>
+                  <div class="text-sm md:text-base text-white/60">{{ $t(`successStory.${item}Description`) }}</div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <!-- Достижения -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div class="bg-black/30 p-4 rounded-lg">
-                <div class="text-sm text-gray-400">Средний чек</div>
-                <div class="text-xl font-bold">535 000 ₸</div>
-                <div class="text-xs text-[#D50404] mt-1">Выше среднего на 35%</div>
+          <!-- Достижения -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            <div v-for="(stat, index) in ['averageCheck', 'clientsPerMonth', 'revenue', 'netProfit']" 
+                 :key="index"
+                 class="bg-white/[0.03] rounded-lg md:rounded-xl p-4 md:p-5 border border-white/[0.05] hover:bg-white/[0.05] transition-all duration-300">
+              <div class="text-xs md:text-sm text-white/60 mb-1">{{ $t(`successStory.${stat}`) }}</div>
+              <div class="text-xl md:text-2xl font-bold text-white/90">
+                {{ ['535 000 ₸', '7', '3 745 000 ₸', '2 800 000 ₸'][index] }}
               </div>
-              <div class="bg-black/30 p-4 rounded-lg">
-                <div class="text-sm text-gray-400">Клиентов в месяц</div>
-                <div class="text-xl font-bold">7</div>
-                <div class="text-xs text-[#D50404] mt-1">Стабильный поток</div>
-              </div>
-              <div class="bg-black/30 p-4 rounded-lg">
-                <div class="text-sm text-gray-400">Выручка</div>
-                <div class="text-xl font-bold">3 745 000 ₸</div>
-                <div class="text-xs text-[#D50404] mt-1">Рост 15% в месяц</div>
-              </div>
-              <div class="bg-black/30 p-4 rounded-lg">
-                <div class="text-sm text-gray-400">Чистая прибыль</div>
-                <div class="text-xl font-bold">2 800 000 ₸</div>
-                <div class="text-xs text-[#D50404] mt-1">Окупаемость за 3 месяца</div>
+              <div class="text-xs md:text-sm bg-gradient-to-r from-[#D50404] to-[#FF0000] bg-clip-text text-transparent mt-1">
+                {{ $t(`successStory.${stat}Description`) }}
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Кнопка призыва -->
-        <div class="text-center mt-12 animate-slide-up" style="animation-delay: 0.2s">
+        <!-- Кнопка -->
+        <div class="text-center mt-8 md:mt-12">
           <button 
-            class="btn-primary px-8 py-4 text-lg"
             @click="$emit('scroll-to-form')"
+            class="group w-full md:w-auto px-8 md:px-12 py-4 md:py-5 relative bg-gradient-to-r from-[#D50404] to-[#FF0000] 
+                   text-white text-lg md:text-xl font-medium rounded-xl md:rounded-2xl transition-all duration-300 
+                   transform hover:scale-105 hover:shadow-[0_0_30px_rgba(213,4,4,0.3)] overflow-hidden"
           >
-            Стать следующим успешным партнером
+            <span class="relative z-10">{{ $t('successStory.button') }}</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#FF0000] to-[#D50404] 
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </button>
         </div>
       </div>
@@ -128,4 +102,103 @@ defineEmits(['scroll-to-form'])
 
 <style scoped>
 @import '../assets/styles/components.css';
+
+/* Анимация падающих частиц */
+@keyframes particle-fall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Анимации для градиентных кругов */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.1; transform: scale(1.05); }
+}
+
+@keyframes pulse-slow-reverse {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.15; transform: scale(1.05); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+.animate-pulse-slow-reverse {
+  animation: pulse-slow-reverse 8s ease-in-out infinite reverse;
+}
+
+/* Плавное появление для карточек */
+.card-container {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: card-appear 0.6s ease-out forwards;
+}
+
+@keyframes card-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Оптимизация для мобильных устройств */
+@media (max-width: 768px) {
+  .backdrop-blur-xl {
+    backdrop-filter: blur(8px);
+  }
+
+  @keyframes particle-fall {
+    0% {
+      transform: translateY(-10px) rotate(0deg);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(100px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-pulse-slow,
+  .animate-pulse-slow-reverse {
+    animation-duration: 10s;
+  }
+}
+
+/* Оптимизация для touch-устройств */
+@media (hover: none) {
+  .group:active {
+    transform: scale(0.98);
+  }
+  
+  button:active {
+    transform: scale(0.98) !important;
+  }
+}
+
+/* Улучшенная производительность анимаций */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-slow,
+  .animate-pulse-slow-reverse {
+    animation: none;
+  }
+
+  .card-container {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
 </style> 

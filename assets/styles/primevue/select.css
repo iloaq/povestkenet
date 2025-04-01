@@ -85,7 +85,7 @@ input.p-select-label {
 }
 
 .p-select-list-container {
-    @apply overflow-auto
+    @apply overflow-auto bg-[#1A1A1A] rounded-lg mt-2
 }
 
 .p-select-option-group {
@@ -106,11 +106,11 @@ input.p-select-label {
         text-white
         rounded-md
         transition-all duration-200
-        hover:bg-[#252525];
+
 }
 
 .p-select-option:not(.p-select-option-selected):not(.p-disabled).p-focus {
-    @apply bg-[#252525] text-white;
+    @apply  text-white;
 }
 
 .p-select-option.p-select-option-selected {
@@ -119,4 +119,12 @@ input.p-select-label {
 
 .p-select-option.p-select-option-selected.p-focus {
     @apply bg-[#AA0000] text-white;
+}
+
+.p-select-list-container::-webkit-scrollbar {
+    @apply w-1.5;
+}
+
+.p-select-list-container::-webkit-scrollbar-track {
+    @apply bg-transparent rounded-full;
 }

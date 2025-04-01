@@ -1,157 +1,70 @@
 <template>
-  <section class="section-container section-dark">
+  <section class="relative min-h-screen flex items-center  overflow-hidden -mt-32 pt-32 py-12 md:py-16 lg:py-20">
     <!-- Фоновые элементы -->
     <div class="absolute inset-0">
-      <div class="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] opacity-5"></div>
-      <div class="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[#D50404] rounded-full opacity-10 blur-[100px]"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(213,4,4,0.1),transparent_50%)]"></div>
+      <!-- Анимированные частицы -->
+      <div class="absolute top-0 left-0 w-full h-64 overflow-hidden opacity-40">
+        <div v-for="i in 5" :key="i" 
+             class="absolute w-1 h-1 bg-[#D50404] rounded-full"
+             :style="{
+               left: `${Math.random() * 100}%`,
+               animationDelay: `${Math.random() * 2}s`,
+               animation: 'particle-fall 3s linear infinite'
+             }">
+        </div>
+      </div>
     </div>
 
-    <div class="container mx-auto px-4 py-20 relative z-10">
-      <div class="text-center mb-16 animate-fade-in">
-        <h2 class="section-title">Наши гарантии</h2>
-        <p class="section-subtitle">Мы обеспечиваем полную поддержку на всех этапах</p>
+    <div class="container mx-auto px-4 relative z-10">
+      <!-- Заголовок -->
+      <div class="text-center mb-8 md:mb-12 lg:mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 px-2">
+          <span class="text-white/90">{{ $t('guarantees.title1') }}</span>
+          <span class="bg-gradient-to-r from-[#D50404] to-[#FF0000] bg-clip-text text-transparent">{{ $t('guarantees.title2') }}</span>
+        </h2>
+        <p class="text-lg md:text-xl text-white/60 px-2">{{ $t('guarantees.description') }}</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Гарантия 1 -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.1s">
-          <div class="w-16 h-16 rounded-full bg-[#D50404]/10 flex items-center justify-center mb-6">
-            <i class="pi pi-shield-check text-[#D50404] text-2xl"></i>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+        <!-- Карточки гарантий -->
+        <div v-for="(guarantee, index) in guarantees" :key="index"
+             class="group bg-white/[0.03] backdrop-blur-xl rounded-xl md:rounded-2xl p-6 md:p-8 border border-white/[0.05] 
+                    shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:bg-white/[0.05] transition-all duration-300 
+                    card-container"
+             :style="{ 'animation-delay': `${index * 0.1}s` }">
+          
+          <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#D50404]/10 flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-all duration-300">
+            <i :class="guarantee.icon" class="text-[#D50404] text-xl md:text-2xl"></i>
           </div>
-          <h3 class="text-xl font-bold mb-4">Гарантия прибыли</h3>
-          <p class="text-gray-400 mb-6">Мы гарантируем окупаемость инвестиций в течение 6 месяцев при соблюдении нашей бизнес-модели</p>
-          <ul class="space-y-3">
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Маркетинговая помощь</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Обучение персонала</span>
-            </li>
-          </ul>
-        </div>
 
-        <!-- Гарантия 2 -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.2s">
-          <div class="w-16 h-16 rounded-full bg-[#D50404]/10 flex items-center justify-center mb-6">
-            <i class="pi pi-handshake text-[#D50404] text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-4">Поддержка 24/7</h3>
-          <p class="text-gray-400 mb-6">Наша команда экспертов всегда готова помочь вам с любыми вопросами и задачами</p>
-          <ul class="space-y-3">
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Техническая поддержка</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Консультации экспертов</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Решение проблем</span>
-            </li>
-          </ul>
-        </div>
+          <h3 class="text-xl md:text-2xl font-bold text-white/90 mb-3 md:mb-4">{{ $t(`guarantees.items.${guarantee.title}.title`) }}</h3>
+          <p class="text-sm md:text-base text-white/60 mb-4 md:mb-6">{{ $t(`guarantees.items.${guarantee.title}.description`) }}</p>
 
-        <!-- Гарантия 3 -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.3s">
-          <div class="w-16 h-16 rounded-full bg-[#D50404]/10 flex items-center justify-center mb-6">
-            <i class="pi pi-sync text-[#D50404] text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-4">Обновление технологий</h3>
-          <p class="text-gray-400 mb-6">Бесплатное обновление всех технологий и методик в течение всего срока сотрудничества</p>
-          <ul class="space-y-3">
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Новые методики</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Обучение новинкам</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Гарантия 4 -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.4s">
-          <div class="w-16 h-16 rounded-full bg-[#D50404]/10 flex items-center justify-center mb-6">
-            <i class="pi pi-chart-line text-[#D50404] text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-4">Рост бизнеса</h3>
-          <p class="text-gray-400 mb-6">Гарантируем постоянный рост вашего бизнеса и увеличение прибыли</p>
-          <ul class="space-y-3">
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Масштабирование</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Новые рынки</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Развитие сети</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Гарантия 5 -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.5s">
-          <div class="w-16 h-16 rounded-full bg-[#D50404]/10 flex items-center justify-center mb-6">
-            <i class="pi pi-users text-[#D50404] text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-4">Сообщество партнеров</h3>
-          <p class="text-gray-400 mb-6">Доступ к закрытому сообществу успешных предпринимателей</p>
-          <ul class="space-y-3">
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Обмен опытом</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Совместные проекты</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Нетворкинг</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Гарантия 6 -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.6s">
-          <div class="w-16 h-16 rounded-full bg-[#D50404]/10 flex items-center justify-center mb-6">
-            <i class="pi pi-file-edit text-[#D50404] text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-4">Юридическая защита</h3>
-          <p class="text-gray-400 mb-6">Полная юридическая поддержка и защита ваших интересов</p>
-          <ul class="space-y-3">
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Правовая помощь</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Документация</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="pi pi-check-circle text-[#D50404]"></i>
-              <span>Защита бренда</span>
+          <ul class="space-y-3 md:space-y-4">
+            <li v-for="(feature, fIndex) in $t(`guarantees.items.${guarantee.title}.features`).split(',')" 
+                :key="fIndex"
+                class="flex items-center gap-2 md:gap-3 group/item">
+              <div class="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-[#D50404]/10 flex items-center justify-center
+                          group-hover/item:bg-gradient-to-r from-[#D50404] to-[#FF0000] transition-all duration-300">
+                <i class="pi pi-check text-[#D50404] text-sm md:text-base group-hover/item:text-white transition-colors duration-300"></i>
+              </div>
+              <span class="text-sm md:text-base text-white/70">{{ feature }}</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <!-- Кнопка призыва -->
-      <div class="text-center mt-12 animate-slide-up" style="animation-delay: 0.7s">
+      <!-- Кнопка -->
+      <div class="text-center mt-8 md:mt-12 lg:mt-16">
         <button 
-          class="btn-primary px-8 py-4 text-lg"
           @click="$emit('scroll-to-form')"
+          class="group w-full md:w-auto px-8 md:px-12 py-4 md:py-5 relative bg-gradient-to-r from-[#D50404] to-[#FF0000] 
+                 text-white text-lg md:text-xl font-medium rounded-xl md:rounded-2xl transition-all duration-300 
+                 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(213,4,4,0.3)] overflow-hidden"
         >
-          Получить подробную информацию
+          <span class="relative z-10">{{ $t('guarantees.button') }}</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-[#FF0000] to-[#D50404] 
+                      opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </button>
       </div>
     </div>
@@ -159,9 +72,151 @@
 </template>
 
 <script setup>
+const guarantees = [
+  {
+    icon: 'pi pi-shield-check',
+    title: 'profit.title',
+    description: 'profit.description',
+    features: 'profit.features'
+  },
+  {
+    icon: 'pi pi-clock',
+    title: 'support.title',
+    description: 'support.description',
+    features: 'support.features'
+  },
+  {
+    icon: 'pi pi-sync',
+    title: 'technology.title',
+    description: 'technology.description',
+    features: 'technology.features'
+  },
+  {
+    icon: 'pi pi-chart-line',
+    title: 'growth.title',
+    description: 'growth.description',
+    features: 'growth.features'
+  },
+  {
+    icon: 'pi pi-users',
+    title: 'community.title',
+    description: 'community.description',
+    features: 'community.features'
+  },
+  {
+    icon: 'pi pi-file-edit',
+    title: 'legal.title',
+    description: 'legal.description',
+    features: 'legal.features'
+  }
+]
+
 defineEmits(['scroll-to-form'])
 </script>
 
 <style scoped>
 @import '../assets/styles/components.css';
+
+/* Анимация падающих частиц */
+@keyframes particle-fall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Анимации для градиентных кругов */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.1; transform: scale(1.05); }
+}
+
+@keyframes pulse-slow-reverse {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.15; transform: scale(1.05); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+.animate-pulse-slow-reverse {
+  animation: pulse-slow-reverse 8s ease-in-out infinite reverse;
+}
+
+/* Плавное появление для карточек */
+.card-container {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: card-appear 0.6s ease-out forwards;
+}
+
+@keyframes card-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Оптимизация для мобильных устройств */
+@media (max-width: 768px) {
+  .backdrop-blur-xl {
+    backdrop-filter: blur(8px);
+  }
+
+  .card-container {
+    animation-duration: 0.4s;
+  }
+
+  /* Оптимизация анимации частиц */
+  @keyframes particle-fall {
+    0% {
+      transform: translateY(-20px) rotate(0deg);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(100px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+}
+
+/* Оптимизация для touch-устройств */
+@media (hover: none) {
+  .group:active {
+    transform: scale(0.98);
+  }
+  
+  button:active {
+    transform: scale(0.98) !important;
+  }
+
+  .group:active {
+    opacity: 0.8;
+  }
+}
+
+/* Улучшенная производительность анимаций */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-slow,
+  .animate-pulse-slow-reverse {
+    animation: none;
+  }
+  
+  .card-container {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
 </style> 

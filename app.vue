@@ -1,75 +1,44 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white">
-    <!-- Главный экран -->
-    <HeroSection @scroll-to-form="scrollToForm" />
-
-    <!-- Почему сейчас самое время -->
-    <WhyNowSection @scroll-to-form="scrollToForm" />
-
-    <!-- Бизнес-модель -->
-    <BusinessModelSection @scroll-to-form="scrollToForm" />
-
-    <!-- Калькулятор прибыли -->
-    <ProfitCalculator @scroll-to-form="scrollToForm" />
-
-    <!-- Карта территорий -->
-    <TerritoryMap @scroll-to-form="scrollToForm" />
-
-    <!-- Гарантии -->
-    <GuaranteesSection @scroll-to-form="scrollToForm" />
-
-    <!-- История успеха -->
-    <SuccessStory @scroll-to-form="scrollToForm" />
-
-    <!-- Сравнение с конкурентами -->
-    <CompetitorsComparison @scroll-to-form="scrollToForm" />
-
-    <!-- Схема запуска -->
-    <LaunchPlan @scroll-to-form="scrollToForm" />
-
-    <!-- Пакеты франшизы -->
-    <FranchisePackages @scroll-to-form="scrollToForm" />
-
-    <!-- FAQ -->
-    <FAQSection @scroll-to-form="scrollToForm" />
-
-    <!-- Форма захвата -->
-    <LeadForm ref="formRef" />
+  <div class="min-h-screen text-white gradientback">
+    <!-- Переключатель языков всегда сверху -->
+    <LangSwitcher />
+    
+    <!-- Основной контент -->
+    <NuxtPage />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import HeroSection from '~/components/HeroSection.vue'
-import WhyNowSection from '~/components/WhyNowSection.vue'
-import BusinessModelSection from '~/components/BusinessModelSection.vue'
-import ProfitCalculator from '~/components/ProfitCalculator.vue'
-import TerritoryMap from '~/components/TerritoryMap.vue'
-import GuaranteesSection from '~/components/GuaranteesSection.vue'
-import SuccessStory from '~/components/SuccessStory.vue'
-import CompetitorsComparison from '~/components/CompetitorsComparison.vue'
-import LaunchPlan from '~/components/LaunchPlan.vue'
-import FranchisePackages from '~/components/FranchisePackages.vue'
-import FAQSection from '~/components/FAQSection.vue'
-import LeadForm from '~/components/LeadForm.vue'
-
-const formRef = ref(null)
-
-const scrollToForm = () => {
-  formRef.value.$el.scrollIntoView({ behavior: 'smooth' })
-}
+import LangSwitcher from '~/components/LangSwitcher.vue'
 </script>
 
 <style>
-/* Глобальные стили */
+/* Анимированный градиентный фон */
 body {
-  @apply bg-black text-white;
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(213, 4, 4, 0.1) 0%, transparent 20%),
-    radial-gradient(circle at 90% 80%, rgba(213, 4, 4, 0.1) 0%, transparent 20%);
+  background-image: url('/bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
-/* Стили для форм */
+.gradientback {
+  background: linear-gradient(-45deg, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.9), rgba(50, 50, 50, 0.9));
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Общие стили для форм */
 .p-inputtext {
   @apply bg-black/30 border-gray-800 text-white backdrop-blur-sm;
   transition: all 0.3s ease;
@@ -80,7 +49,7 @@ body {
   box-shadow: 0 0 20px rgba(213, 4, 4, 0.2);
 }
 
-/* Стили для кнопок */
+/* Общие стили для кнопок */
 .p-button {
   @apply transition-all duration-300;
   position: relative;
@@ -115,7 +84,7 @@ body {
   box-shadow: 0 6px 20px rgba(213, 4, 4, 0.4);
 }
 
-/* Анимации */
+/* Общие анимации */
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
 }
@@ -161,7 +130,7 @@ body {
   }
 }
 
-/* Стили для карточек */
+/* Общие стили для карточек */
 .glassmorphism-dark {
   background: rgba(36, 36, 36, 0.6);
   backdrop-filter: blur(10px);
@@ -176,13 +145,13 @@ body {
   border-color: rgba(213, 4, 4, 0.2);
 }
 
-/* Стили для заголовков */
+/* Общие стили для заголовков */
 h1, h2, h3, h4, h5, h6 {
   @apply font-bold;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Стили для прогресс-баров */
+/* Общие стили для компонентов PrimeVue */
 .p-progressbar {
   @apply bg-gray-800;
   height: 8px;
@@ -194,7 +163,6 @@ h1, h2, h3, h4, h5, h6 {
   transition: width 1s ease-in-out;
 }
 
-/* Стили для аккордеона */
 .p-accordion-header-link {
   @apply bg-black/30 border-gray-800 text-white backdrop-blur-sm;
   transition: all 0.3s ease;
@@ -208,7 +176,6 @@ h1, h2, h3, h4, h5, h6 {
   @apply bg-black/30 border-gray-800 backdrop-blur-sm;
 }
 
-/* Стили для слайдера */
 .p-slider {
   @apply bg-gray-800;
 }

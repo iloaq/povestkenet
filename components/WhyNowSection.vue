@@ -1,115 +1,210 @@
 <template>
-  <section class="section-container section-dark">
-    <!-- Фоновые элементы -->
+  <section class="relative min-h-screen flex items-center  overflow-hidden -mt-32 pt-32 py-12 md:py-16">
+    <!-- Удаляем старый верхний разделитель и добавляем новые эффекты -->
     <div class="absolute inset-0">
-      <div class="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] opacity-5"></div>
-      <div class="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[#D50404] rounded-full opacity-10 blur-[100px]"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(213,4,4,0.1),transparent_50%)]"></div>
+      <!-- Анимированные частицы -->
+      <div class="absolute top-0 left-0 w-full h-64 overflow-hidden opacity-40">
+        <div v-for="i in 5" :key="i" 
+             class="absolute w-1 h-1 bg-[#D50404] rounded-full"
+             :style="{
+               left: `${Math.random() * 100}%`,
+               animationDelay: `${Math.random() * 2}s`,
+               animation: 'particle-fall 3s linear infinite'
+             }">
+        </div>
+      </div>
+
+      
     </div>
 
-    <div class="container mx-auto px-4 py-20 relative z-10">
-      <div class="text-center mb-16 animate-fade-in">
-        <h2 class="section-title">Почему сейчас самое время?</h2>
-        <p class="section-subtitle">Идеальный момент для запуска бизнеса на юридических услугах</p>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-8 md:mb-12 lg:mb-16">
+        <h2 class="text-2xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6">
+          <span class="text-white/90">{{ $t('advantages.title1') }}</span>
+          <span class="bg-gradient-to-r from-[#D50404] to-[#FF0000] bg-clip-text text-transparent">{{ $t('advantages.title2') }}</span>
+          <span class="text-white/90">{{ $t('advantages.title3') }}</span>
+        </h2>
+        <p class="text-base md:text-xl text-white/60">{{ $t('advantages.subtitle') }}</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Рост рынка -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.1s">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full bg-[#D50404]/10 flex items-center justify-center">
-              <i class="pi pi-chart-line text-[#D50404] text-xl"></i>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+        <!-- Карточки преимуществ -->
+        <div v-for="(advantage, index) in advantages" :key="index"
+             class="group bg-white/[0.03] backdrop-blur-xl rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/[0.05] shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:bg-white/[0.05] transition-all duration-300 card-container"
+             :style="{ 'animation-delay': `${index * 0.1}s` }">
+          <div class="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-[#D50404] to-[#FF0000] flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+              <i :class="advantage.icon" class="text-white text-lg md:text-xl"></i>
             </div>
-            <h3 class="text-xl font-bold">Рост рынка</h3>
+            <h3 class="text-lg md:text-xl font-bold text-white/90">{{ $t(advantage.title) }}</h3>
           </div>
-          <p class="text-gray-400">
-            Рынок юридических услуг растет на 25% ежегодно. Спрос превышает предложение, что создает идеальные условия для новых игроков.
-          </p>
-        </div>
-
-        <!-- Низкая конкуренция -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.2s">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full bg-[#D50404]/10 flex items-center justify-center">
-              <i class="pi pi-users text-[#D50404] text-xl"></i>
-            </div>
-            <h3 class="text-xl font-bold">Низкая конкуренция</h3>
-          </div>
-          <p class="text-gray-400">
-            В большинстве регионов рынок юридических услуг не насыщен. У вас есть возможность занять лидирующие позиции.
-          </p>
-        </div>
-
-        <!-- Цифровизация -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.3s">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full bg-[#D50404]/10 flex items-center justify-center">
-              <i class="pi pi-globe text-[#D50404] text-xl"></i>
-            </div>
-            <h3 class="text-xl font-bold">Цифровизация</h3>
-          </div>
-          <p class="text-gray-400">
-            Переход на онлайн-формат работы открывает новые возможности для масштабирования бизнеса и снижения издержек.
-          </p>
-        </div>
-
-        <!-- Изменения в законодательстве -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.4s">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full bg-[#D50404]/10 flex items-center justify-center">
-              <i class="pi pi-file-edit text-[#D50404] text-xl"></i>
-            </div>
-            <h3 class="text-xl font-bold">Изменения в законодательстве</h3>
-          </div>
-          <p class="text-gray-400">
-            Частые изменения в законодательстве увеличивают спрос на юридические услуги и консультации.
-          </p>
-        </div>
-
-        <!-- Экономическая ситуация -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.5s">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full bg-[#D50404]/10 flex items-center justify-center">
-              <i class="pi pi-dollar text-[#D50404] text-xl"></i>
-            </div>
-            <h3 class="text-xl font-bold">Экономическая ситуация</h3>
-          </div>
-          <p class="text-gray-400">
-            В условиях экономической нестабильности бизнесу как никогда нужна юридическая поддержка и защита.
-          </p>
-        </div>
-
-        <!-- Технологический прорыв -->
-        <div class="card-container animate-slide-up" style="animation-delay: 0.6s">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full bg-[#D50404]/10 flex items-center justify-center">
-              <i class="pi pi-mobile text-[#D50404] text-xl"></i>
-            </div>
-            <h3 class="text-xl font-bold">Технологический прорыв</h3>
-          </div>
-          <p class="text-gray-400">
-            Новые технологии позволяют автоматизировать рутинные процессы и повысить эффективность работы.
-          </p>
+          <p class="text-sm md:text-base text-white/60">{{ $t(advantage.description) }}</p>
         </div>
       </div>
 
-      <!-- Призыв к действию -->
-      <div class="text-center mt-16 animate-fade-in" style="animation-delay: 0.7s">
+      <div class="text-center mt-8 md:mt-12 lg:mt-16">
         <button 
-          class="btn-primary text-lg py-3 px-8"
           @click="$emit('scroll-to-form')"
+          class="group w-full md:w-auto px-6 md:px-12 py-4 md:py-5 relative bg-gradient-to-r from-[#D50404] to-[#FF0000] 
+                 text-white text-lg md:text-xl font-medium rounded-xl md:rounded-2xl transition-all duration-300 
+                 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(213,4,4,0.3)] overflow-hidden"
         >
-          Начать бизнес сейчас
+          <span class="relative z-10">{{ $t('advantages.cta') }}</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-[#FF0000] to-[#D50404] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </button>
       </div>
     </div>
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
+const advantages = [
+  {
+    icon: 'pi pi-chart-line',
+    title: 'advantages.demand',
+    description: 'advantages.demandDescription'
+  },
+  {
+    icon: 'pi pi-map',
+    title: 'advantages.freeCities',
+    description: 'advantages.freeCitiesDescription'
+  },
+  {
+    icon: 'pi pi-dollar',
+    title: 'advantages.highMargin',
+    description: 'advantages.highMarginDescription'
+  },
+  {
+    icon: 'pi pi-file-edit',
+    title: 'advantages.legalChanges',
+    description: 'advantages.legalChangesDescription'
+  },
+  {
+    icon: 'pi pi-calendar',
+    title: 'advantages.seasonalDemand',
+    description: 'advantages.seasonalDemandDescription'
+  },
+  {
+    icon: 'pi pi-heart',
+    title: 'advantages.socialImpact',
+    description: 'advantages.socialImpactDescription'
+  }
+]
+
 defineEmits(['scroll-to-form'])
 </script>
 
 <style scoped>
 @import '../assets/styles/components.css';
+
+/* Добавляем анимацию падающих частиц */
+@keyframes particle-fall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Добавляем анимации для градиентных кругов */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.1; transform: scale(1.05); }
+}
+
+@keyframes pulse-slow-reverse {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.15; transform: scale(1.05); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+.animate-pulse-slow-reverse {
+  animation: pulse-slow-reverse 8s ease-in-out infinite reverse;
+}
+
+/* Добавляем плавное появление для карточек */
+.card-container {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: card-appear 0.6s ease-out forwards;
+}
+
+@keyframes card-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Оптимизация для мобильных устройств */
+@media (max-width: 768px) {
+  .backdrop-blur-xl {
+    backdrop-filter: blur(8px);
+  }
+
+  @keyframes particle-fall {
+    0% {
+      transform: translateY(-10px) rotate(0deg);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(100px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-pulse-slow,
+  .animate-pulse-slow-reverse {
+    animation-duration: 10s;
+  }
+}
+
+/* Оптимизация для touch-устройств */
+@media (hover: none) {
+  .group:active {
+    transform: scale(0.98);
+  }
+  
+  button:active {
+    transform: scale(0.98) !important;
+  }
+}
+
+/* Улучшенная производительность анимаций */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-slow,
+  .animate-pulse-slow-reverse,
+  .card-container {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Оптимизация для маленьких экранов */
+@media (max-width: 360px) {
+  .text-sm {
+    font-size: 0.75rem;
+  }
+  
+  .text-lg {
+    font-size: 1rem;
+  }
+  
+  .rounded-xl {
+    border-radius: 0.5rem;
+  }
+}
 </style> 
