@@ -57,10 +57,10 @@ export default defineNuxtConfig({
       }
     ],
     lazy: true,
-    langDir: 'locales/',
+    langDir: 'locales',
     strategy: 'prefix',
     vueI18n: './i18n.config.ts',
-    skipSettingLocaleOnNavigate: true,
+    skipSettingLocaleOnNavigate: false,
     bundle: {
       optimizeTranslationDirective: false
     }

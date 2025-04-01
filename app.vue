@@ -3,6 +3,8 @@
     <!-- Переключатель языков всегда сверху -->
     <SchemaOrg />
     <LangSwitcher />
+    <I18nLoader />
+    
     <!-- Основной контент -->
     <NuxtPage />
   </div>
@@ -11,6 +13,7 @@
 <script setup lang="ts">
 import LangSwitcher from '~/components/LangSwitcher.vue'
 import SchemaOrg from '~/components/SchemaOrg.vue'
+import I18nLoader from '~/components/I18nLoader.vue'
 </script>
 
 <style>

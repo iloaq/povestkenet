@@ -37,7 +37,7 @@
 const { locale: currentLocale, locales } = useI18n()
 const router = useRouter()
 
-const switchLanguage = async (code: string) => {
+const switchLanguage = (code: string) => {
   const currentPath = router.currentRoute.value.fullPath
   
   // Если уже на нужном языке, не делаем ничего
@@ -46,14 +46,13 @@ const switchLanguage = async (code: string) => {
   }
   
   // Получаем базовый путь без языкового префикса
-  const basePath = currentPath.replace(/^\/[ru|kz]/, '')
+  const basePath = currentPath.replace(/^\/(ru|kz)/, '')
   
   // Формируем новый путь
   const targetPath = `/${code}${basePath}`
   
-  // Меняем язык и переходим
-  currentLocale.value = code as 'ru' | 'kz'
-  await navigateTo(targetPath, { replace: true })
+  // При статическом режиме делаем принудительную перезагрузку
+  window.location.href = targetPath
 }
 </script>
 
