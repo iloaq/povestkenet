@@ -1,5 +1,5 @@
 <template>
-  <section class="relative min-h-screen flex items-center  overflow-hidden -mt-32 pt-32 py-12 md:py-16">
+  <section class="relative flex items-center  overflow-hidden py-12 md:py-16 lg:py-20">
     <!-- Удаляем старый верхний разделитель и добавляем новые эффекты -->
     <div class="absolute inset-0">
       <!-- Анимированные частицы -->
@@ -95,6 +95,19 @@ defineEmits(['scroll-to-form'])
 </script>
 
 <style scoped>
+.why-now-section {
+  background: #1a1a1a;
+  padding: 0 1rem;
+}
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @import '../assets/styles/components.css';
 
 /* Добавляем анимацию падающих частиц */

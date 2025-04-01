@@ -1,5 +1,5 @@
 <template>
-  <section class="relative min-h-screen flex items-center  overflow-hidden py-12 md:py-16 lg:py-20">
+  <section class="relative flex items-center  overflow-hidden py-12 md:py-16 lg:py-20">
 
     <div class="container mx-auto px-4 relative z-10 py-8 md:py-12 lg:py-20">
       <!-- Верхняя плашка -->
@@ -119,6 +119,24 @@ defineEmits(['scroll-to-form'])
 </script>
 
 <style scoped>
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+}
+
+.hero-content {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 1rem;
+  text-align: center;
+  z-index: 1;
+}
+
 .text-gradient {
   background: linear-gradient(to right, #D50404, #FF0000);
   -webkit-background-clip: text;

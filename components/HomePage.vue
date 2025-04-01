@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-page">
     <!-- Главный экран -->
     <HeroSection @scroll-to-form="scrollToForm" />
 
@@ -38,7 +38,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import HeroSection from '~/components/HeroSection.vue'
 import WhyNowSection from '~/components/WhyNowSection.vue'
@@ -54,8 +54,35 @@ import FAQSection from '~/components/FAQSection.vue'
 import LeadForm from '~/components/LeadForm.vue'
 
 // Для прокрутки к форме
-const formRef = ref(null)
+const formRef = ref<HTMLElement | null>(null)
 const scrollToForm = () => {
-  formRef.value.$el.scrollIntoView({ behavior: 'smooth' })
+  formRef.value?.scrollIntoView({ behavior: 'smooth' })
 }
-</script> 
+</script>
+
+<style scoped>
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem; /* Единый отступ между секциями */
+}
+
+/* Адаптивные отступы */
+@media (max-width: 1024px) {
+  .home-page {
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-page {
+    gap: 2rem;
+  }
+}
+</style> 

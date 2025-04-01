@@ -1,5 +1,5 @@
 <template>
-  <section class="relative min-h-screen flex items-center  overflow-hidden -mt-32 pt-32 py-12 md:py-16 lg:py-20">
+  <section class="relative  flex items-center  overflow-hidden py-12 md:py-16 lg:py-20">
     <!-- Фоновые элементы -->
     <div class="absolute inset-0">
       <!-- Анимированные частицы -->
@@ -75,37 +75,37 @@
 const guarantees = [
   {
     icon: 'pi pi-shield-check',
-    title: 'profit.title',
+    title: 'profit',
     description: 'profit.description',
     features: 'profit.features'
   },
   {
     icon: 'pi pi-clock',
-    title: 'support.title',
+    title: 'support',
     description: 'support.description',
     features: 'support.features'
   },
   {
     icon: 'pi pi-sync',
-    title: 'technology.title',
+    title: 'technology',
     description: 'technology.description',
     features: 'technology.features'
   },
   {
     icon: 'pi pi-chart-line',
-    title: 'growth.title',
+    title: 'growth',
     description: 'growth.description',
     features: 'growth.features'
   },
   {
     icon: 'pi pi-users',
-    title: 'community.title',
+    title: 'community',
     description: 'community.description',
     features: 'community.features'
   },
   {
     icon: 'pi pi-file-edit',
-    title: 'legal.title',
+    title: 'legal',
     description: 'legal.description',
     features: 'legal.features'
   }

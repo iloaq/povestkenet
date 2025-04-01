@@ -1,5 +1,5 @@
 <template>
-  <section class="relative min-h-screen flex items-center  overflow-hidden -mt-32 pt-32 py-12 md:py-16 lg:py-20">
+  <section class="relative  flex items-center  overflow-hidden py-12 md:py-16 lg:py-20">
     <!-- Фоновые эффекты -->
     <div class="absolute inset-0">
       <!-- Анимированные частицы -->

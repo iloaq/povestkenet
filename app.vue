@@ -1,6 +1,7 @@
 <template>
   <div class="min-h-screen text-white gradientback">
     <!-- Переключатель языков всегда сверху -->
+    <SchemaOrg />
     <LangSwitcher />
     
     <!-- Основной контент -->
@@ -8,8 +9,9 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import LangSwitcher from '~/components/LangSwitcher.vue'
+import SchemaOrg from '~/components/SchemaOrg.vue'
 </script>
 
 <style>

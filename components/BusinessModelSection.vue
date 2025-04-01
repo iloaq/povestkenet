@@ -1,5 +1,5 @@
 <template>
-  <section class="relative min-h-screen flex items-center overflow-hidden py-16 md:py-20">
+  <section class="relative flex items-center overflow-hidden py-12 md:py-16 lg:py-20">
    
 
     <div class="container mx-auto px-4 relative z-10">
@@ -64,6 +64,19 @@ defineEmits(['scroll-to-form'])
 </script>
 
 <style scoped>
+.business-model-section {
+  background: #1a1a1a;
+  padding: 0 1rem;
+}
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @keyframes pulse-slow {
   0%, 100% { opacity: 0.15; transform: scale(1); }
   50% { opacity: 0.1; transform: scale(1.05); }

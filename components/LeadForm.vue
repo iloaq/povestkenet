@@ -1,5 +1,5 @@
 <template>
-  <section class="relative min-h-screen flex items-center  overflow-hidden -mt-32 pt-32 py-12 md:py-16">
+  <section class="relative  flex items-center  overflow-hidden py-12 md:py-16">
     <!-- Фоновые эффекты -->
     <div class="absolute inset-0">
       <!-- Анимированные частицы -->
@@ -148,6 +148,34 @@
         </div>
       </div>
     </div>
+
+    <!-- Добавляем градиентные кружки внизу -->
+    <div class="absolute -bottom-32 left-0 w-full h-48 md:h-64 pointer-events-none">
+      <!-- Волнистый переход -->
+      <div class="absolute bottom-0 left-0 w-full">
+        <svg class="w-full h-32" viewBox="0 0 1440 100" fill="none" preserveAspectRatio="none">
+          <path d="M0 25L48 31.7C96 38.3 192 51.7 288 55.8C384 60 480 55 576 46.7C672 38.3 768 26.7 864 25C960 23.3 1056 31.7 1152 36.7C1248 41.7 1344 43.3 1392 44.2L1440 45V100H1392C1344 100 1248 100 1152 100C1056 100 960 100 864 100C768 100 672 100 576 100C480 100 384 100 288 100C192 100 96 100 48 100H0V25Z" 
+                fill="url(#gradient-fill)"/>
+          <defs>
+            <linearGradient id="gradient-fill" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#D50404" stop-opacity="0.2"/>
+              <stop offset="1" stop-color="#FF0000" stop-opacity="0.25"/>
+              <stop offset="5" stop-color="#D50404" stop-opacity="0.2"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <!-- Градиентная линия -->
+      <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#D50404] to-transparent opacity-30"></div>
+
+      <!-- Светящиеся точки -->
+      <div class="absolute bottom-0 w-full flex justify-between px-4">
+        <div class="w-2 h-2 rounded-full bg-gradient-to-r from-[#D50404] to-[#FF0000] shadow-[0_0_10px_rgba(213,4,4,0.5)] animate-pulse"></div>
+        <div class="w-2 h-2 rounded-full bg-gradient-to-r from-[#D50404] to-[#FF0000] shadow-[0_0_10px_rgba(213,4,4,0.5)] animate-pulse" style="animation-delay: 0.5s"></div>
+        <div class="w-2 h-2 rounded-full bg-gradient-to-r from-[#D50404] to-[#FF0000] shadow-[0_0_10px_rgba(213,4,4,0.5)] animate-pulse" style="animation-delay: 1s"></div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -164,7 +192,6 @@ const formData = reactive({
 })
 
 const handleSubmit = () => {
-  console.log('Form submitted:', formData)
 }
 </script>
 

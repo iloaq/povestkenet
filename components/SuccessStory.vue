@@ -1,5 +1,5 @@
 <template>
-  <section class="relative min-h-screen flex items-center  overflow-hidden -mt-32 pt-32 py-12 md:py-16">
+  <section class="relative  flex items-center  overflow-hidden py-12 md:py-16">
     <!-- Фоновые эффекты -->
     
     <div class="container mx-auto px-4 relative z-10">
