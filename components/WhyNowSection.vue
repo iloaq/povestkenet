@@ -108,7 +108,6 @@ defineEmits(['scroll-to-form'])
   align-items: center;
 }
 
-@import '../assets/styles/components.css';
 
 /* Добавляем анимацию падающих частиц */
 @keyframes particle-fall {

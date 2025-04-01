@@ -2,12 +2,13 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
+  devtools: { enabled: true },
   modules: [
     '@primevue/nuxt-module',
     '@nuxtjs/i18n',
     '@nuxt/image',
     '@nuxtjs/robots',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
   ],
   css: [
     '@/assets/styles/tailwind.css',
@@ -33,6 +34,14 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-03-30',
   i18n: {
+    baseUrl: 'https://francise.poveskenet.kz',
+    defaultLocale: 'ru',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      cookieSecure: true
+    },
     locales: [
       {
         code: 'ru',
@@ -47,15 +56,14 @@ export default defineNuxtConfig({
         name: 'Қазақша'
       }
     ],
-    defaultLocale: 'ru',
-    strategy: 'prefix',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: 'root'
-    },
+    lazy: true,
     langDir: 'locales/',
-    vueI18n: './i18n.config.ts'
+    strategy: 'prefix',
+    vueI18n: './i18n.config.ts',
+    skipSettingLocaleOnNavigate: true,
+    bundle: {
+      optimizeTranslationDirective: false
+    }
   },
   app: {
     head: {
@@ -72,40 +80,50 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
         { name: 'robots', content: 'index, follow' },
         { name: 'googlebot', content: 'index, follow' },
-        { name: 'yandex', content: 'index, follow' }
+        { name: 'yandex', content: 'index, follow' },
+        { name: 'description', content: 'Франшиза юридической помощи призывникам. Помощь в получении отсрочки от армии. Подробная информация о франшизе, преимуществах и условиях сотрудничества.' },
+        { name: 'keywords', content: 'франшиза, юридическая помощь, призывники, отсрочка от армии, военный билет, бизнес' },
+        { name: 'author', content: 'ПОВЕСТКАНЕТ' },
+        { property: 'og:title', content: 'ПОВЕСТКАНЕТ | Франшиза юридической помощи призывникам' },
+        { property: 'og:description', content: 'Франшиза юридической помощи призывникам. Помощь в получении отсрочки от армии. Подробная информация о франшизе, преимуществах и условиях сотрудничества.' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: 'https://francise.poveskenet.kz' },
+        { property: 'og:image', content: 'https://francise.poveskenet.kz/og-image.jpg' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: 'ПОВЕСТКАНЕТ | Франшиза юридической помощи призывникам' },
+        { name: 'twitter:description', content: 'Франшиза юридической помощи призывникам. Помощь в получении отсрочки от армии.' },
+        { name: 'twitter:image', content: 'https://francise.poveskenet.kz/og-image.jpg' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
-        { rel: 'canonical', href: 'https://francise.poveskenet.kz' }
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { rel: 'canonical', href: 'https://francise.poveskenet.kz' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap' }
       ]
     }
   },
   nitro: {
     prerender: {
-      routes: [
-        '/ru',
-        '/kz',
-        '/ru/about',
-        '/kz/about',
-        '/ru/advantages',
-        '/kz/advantages',
-        '/ru/packages',
-        '/kz/packages',
-        '/ru/calculator',
-        '/kz/calculator',
-        '/ru/contacts',
-        '/kz/contacts'
-      ],
+      routes: ['/', '/index.html'],
       crawlLinks: true,
-      failOnError: false
+      ignore: ['/api'],
+      autoSubfolderIndex: false
     },
     compressPublicAssets: true,
     minify: true,
     routeRules: {
+      '/': { 
+        static: true,
+        prerender: true,
+        cache: { 
+          maxAge: 60 * 60 * 24 
+        }
+      },
       '/**': {
         headers: {
           'Cache-Control': 'public, max-age=31536000, immutable',
@@ -115,33 +133,6 @@ export default defineNuxtConfig({
         }
       }
     }
-  },
-  vite: {
-    build: {
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'ui': ['primevue']
-          }
-        }
-      },
-      chunkSizeWarningLimit: 1000,
-      minify: 'terser',
-      terserOptions: {
-        compress: {
-          drop_console: true,
-          drop_debugger: true
-        }
-      }
-    },
-    optimizeDeps: {
-      include: ['vue', 'vue-router', 'vue-i18n', '@vueuse/core']
-    }
-  },
-  experimental: {
-    payloadExtraction: true,
-    renderJsonPayloads: true,
-    crossOriginPrefetch: true
   },
   // Переносим кастомные настройки в runtimeConfig.public
   runtimeConfig: {
@@ -205,9 +196,5 @@ export default defineNuxtConfig({
         }
       }
     }
-  },
-  // Оптимизация сборки
-  build: {
-    transpile: ['vue-i18n']
   }
 })

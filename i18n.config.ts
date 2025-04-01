@@ -1,5 +1,5 @@
-export default defineI18n(() => ({
+export default {
   legacy: false,
   locale: 'ru',
   messages: {}
-})) 
+} 

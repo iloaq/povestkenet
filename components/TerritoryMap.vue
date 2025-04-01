@@ -303,7 +303,6 @@ defineEmits(['select-city'])
 </script>
 
 <style scoped>
-@import '../assets/styles/components.css';
 
 /* Анимация падающих частиц */
 @keyframes particle-fall {

@@ -101,7 +101,6 @@ defineEmits(['scroll-to-form'])
 </script>
 
 <style scoped>
-@import '../assets/styles/components.css';
 
 /* Анимация падающих частиц */
 @keyframes particle-fall {
