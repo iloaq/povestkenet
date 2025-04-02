@@ -40,15 +40,18 @@ const router = useRouter()
 const switchLanguage = (code: string) => {
   const currentPath = router.currentRoute.value.fullPath
   
+  // Нормализуем текущий путь (удаляем лишние слеши)
+  const normalizedCurrentPath = currentPath.replace(/\/+$/, '')
+  
   // Если уже на нужном языке, не делаем ничего
-  if (currentPath === `/${code}` || currentPath === `/${code}/index`) {
+  if (normalizedCurrentPath === `/${code}` || normalizedCurrentPath === `/${code}/index`) {
     return
   }
   
   // Получаем базовый путь без языкового префикса
-  const basePath = currentPath.replace(/^\/(ru|kz)/, '')
+  const basePath = normalizedCurrentPath.replace(/^\/(ru|kz)/, '')
   
-  // Формируем новый путь
+  // Формируем новый путь (всегда без слеша в конце)
   const targetPath = `/${code}${basePath}`
   
   // При статическом режиме делаем принудительную перезагрузку

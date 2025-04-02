@@ -24,8 +24,46 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/ssl:/etc/nginx/ssl
       - nuxt-data:/usr/share/nginx/html
+      - wp-content:/var/www/html
     depends_on:
       - nuxt-app
+      - wordpress
+
+  # WordPress
+  wordpress:
+    image: wordpress:latest
+    container_name: povestkenet-wordpress
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppassword
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_TABLE_PREFIX: wp_
+    volumes:
+      - wp-content:/var/www/html
+      - ./wordpress/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    depends_on:
+      - mysql
+
+  # MySQL для WordPress
+  mysql:
+    image: mysql:5.7
+    container_name: povestkenet-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wppassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - ./mysql/data:/var/lib/mysql
 
 volumes:
-  nuxt-data: 
+  nuxt-data:
+  wp-content:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/git-repos/work/povestkenet/wordpress/data 

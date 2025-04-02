@@ -22,3 +22,16 @@ logs
 .env
 .env.*
 !.env.example
+
+# WordPress и MySQL данные
+wordpress/data/*
+!wordpress/data/.gitkeep
+mysql/data/*
+!mysql/data/.gitkeep
+
+# SSL сертификаты
+nginx/ssl/*
+!nginx/ssl/.gitkeep
+
+# Резервные копии
+backups/
