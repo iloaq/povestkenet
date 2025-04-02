@@ -1,75 +1,101 @@
-# Nuxt 3 Minimal Starter
+# ПОВЕСТКАНЕТ - Франшиза юридической помощи призывникам
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## О проекте
 
-## Setup
+Проект представляет собой веб-сайт франшизы юридической помощи призывникам. Сайт разработан на базе Nuxt.js с использованием модульной архитектуры и поддержкой многоязычности (русский и казахский языки).
 
-Make sure to install the dependencies:
+## Технологии
 
-```bash
-# npm
-npm install
+- Nuxt.js 3
+- PrimeVue
+- Tailwind CSS
+- Docker и Docker Compose
+- Nginx
 
-# pnpm
-pnpm install
+## Структура проекта
 
-# yarn
-yarn install
-
-# bun
-bun install
+```
+.
+├── assets/              # Статические ресурсы (стили, изображения)
+├── components/          # Компоненты Vue
+├── i18n/                # Конфигурация i18n
+├── locales/             # Файлы локализации
+├── layouts/             # Макеты страниц
+├── pages/               # Страницы приложения
+├── plugins/             # Плагины Vue
+├── public/              # Публичные файлы
+├── nginx/               # Конфигурация Nginx
+├── docker-compose.yml   # Конфигурация Docker Compose
+├── Dockerfile           # Инструкции для сборки Docker-образа
+├── nuxt.config.ts       # Конфигурация Nuxt.js
+└── README.md            # Документация проекта
 ```
 
-## Development Server
+## Установка и запуск
 
-Start the development server on `http://localhost:3000`:
+### Предварительные требования
 
-```bash
-# npm
-npm run dev
+- Docker и Docker Compose
+- Node.js 18+ (для локальной разработки)
 
-# pnpm
-pnpm run dev
+### Локальная разработка
 
-# yarn
-yarn dev
+1. Клонировать репозиторий:
+   ```bash
+   git clone https://github.com/yourusername/povestkenet.git
+   cd povestkenet
+   ```
 
-# bun
-bun run dev
-```
+2. Установить зависимости:
+   ```bash
+   npm install
+   ```
 
-## Production
+3. Запустить проект в режиме разработки:
+   ```bash
+   npm run dev
+   ```
 
-Build the application for production:
+4. Проект будет доступен по адресу: http://localhost:3000
 
-```bash
-# npm
-npm run build
+### Развертывание на сервере
 
-# pnpm
-pnpm run build
+1. Клонировать репозиторий на сервер:
+   ```bash
+   git clone https://github.com/yourusername/povestkenet.git
+   cd povestkenet
+   ```
 
-# yarn
-yarn build
+2. Запустить проект с помощью Docker Compose:
+   ```bash
+   # Сделать скрипт исполняемым
+   chmod +x deploy.sh
+   
+   # Запустить скрипт развертывания
+   ./deploy.sh
+   ```
 
-# bun
-bun run build
-```
+3. Проект будет доступен по адресу: https://franchise.povestkenet.kz
 
-Locally preview production build:
+## SSL-сертификаты
 
-```bash
-# npm
-npm run preview
+Скрипт `deploy.sh` автоматически генерирует самоподписанные сертификаты для разработки. 
+Для продакшен-окружения замените их на настоящие сертификаты, полученные от доверенного центра сертификации (например, Let's Encrypt).
 
-# pnpm
-pnpm run preview
+Сертификаты должны быть размещены в директории `./nginx/ssl/` с именами:
+- `franchise.povestkenet.kz.crt` - сертификат
+- `franchise.povestkenet.kz.key` - приватный ключ
 
-# yarn
-yarn preview
+## Многоязычность
 
-# bun
-bun run preview
-```
+Проект поддерживает две локализации:
+- Русский (ru) - основной язык
+- Казахский (kz)
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Файлы локализации находятся в директории `locales/`.
+
+## Контакты
+
+Для получения дополнительной информации о франшизе:
+- Email: info@povestkenet.kz
+- Телефон: +7 (XXX) XXX-XX-XX

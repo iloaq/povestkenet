@@ -1,26 +1,20 @@
-# Используем официальный образ Node.js
-FROM node:18-alpine
+FROM node:18-alpine AS builder
 
-# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем файлы package.json и package-lock.json
 COPY package*.json ./
-
-# Устанавливаем зависимости
 RUN npm ci
 
-# Копируем остальные файлы проекта
 COPY . .
-
-# Собираем Nuxt-приложение
 RUN npm run build
 
-# Устанавливаем PM2 для управления процессом
-RUN npm install -g pm2
+FROM node:18-alpine
 
-# Экспортируем порт
-EXPOSE 3000
+WORKDIR /app
 
-# Запуск через PM2
-CMD ["pm2-runtime", "start", "npm", "--", "start"] 
+COPY --from=builder /app/.output ./.output
+COPY --from=builder /app/package*.json ./
+
+ENV NODE_ENV=production
+
+CMD ["node", ".output/server/index.mjs"] 

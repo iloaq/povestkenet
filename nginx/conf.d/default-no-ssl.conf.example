@@ -1,0 +1,40 @@
+server {
+    listen 80;
+    server_name franchise.povestkenet.kz;
+    
+    root /usr/share/nginx/html;
+    index index.html;
+    
+    # Заголовки безопасности
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+
+    # Статичные файлы с длительным кешированием
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|webp|woff|woff2|ttf|eot)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        try_files $uri =404;
+    }
+
+    # Правила для локализованных маршрутов
+    location = /ru {
+        try_files $uri /ru/index.html /ru.html =404;
+    }
+
+    location = /kz {
+        try_files $uri /kz/index.html /kz.html =404;
+    }
+
+    # Основной маршрут
+    location / {
+        try_files $uri $uri.html $uri/index.html /index.html =404;
+    }
+
+    # Обработка ошибок
+    error_page 404 /404.html;
+    location = /404.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+} 

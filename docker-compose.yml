@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  nuxt-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: povestkenet-app
+    restart: always
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - nuxt-data:/app/.output
+
+  nginx:
+    image: nginx:alpine
+    container_name: povestkenet-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+      - nuxt-data:/usr/share/nginx/html
+    depends_on:
+      - nuxt-app
+
+volumes:
+  nuxt-data: 
