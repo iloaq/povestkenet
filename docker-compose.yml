@@ -9,6 +9,8 @@ services:
     restart: always
     environment:
       - NODE_ENV=production
+    volumes:
+      - nuxt-data:/app/.output
 
   nginx:
     image: nginx:alpine
@@ -21,7 +23,7 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/ssl:/etc/nginx/ssl
-      - ./.output/public:/usr/share/nginx/html
+      - nuxt-data:/usr/share/nginx/html
     depends_on:
       - nuxt-app
 
