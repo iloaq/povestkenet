@@ -2,15 +2,14 @@
   <section class="relative  flex items-center  overflow-hidden py-12 md:py-16">
     <!-- Фоновые эффекты -->
     <div class="absolute inset-0">
-      <!-- Анимированные частицы -->
+      <!-- Анимированные частицы - используем фиксированные позиции -->
       <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-40">
         <div v-for="i in 20" :key="i" 
-             class="absolute w-1 h-1 bg-[#D50404] rounded-full"
+             class="absolute w-1 h-1 bg-[#D50404] rounded-full particle"
              :style="{
-               left: `${Math.random() * 100}%`,
-               top: `${Math.random() * 100}%`,
-               animationDelay: `${Math.random() * 5}s`,
-               animation: 'particle-float 10s linear infinite'
+               left: `${(i * 5) % 100}%`,
+               top: `${(i * 7) % 100}%`,
+               animationDelay: `${(i * 0.25)}s`
              }">
         </div>
       </div>
@@ -191,11 +190,45 @@ const formData = reactive({
   phone: ''
 })
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
+  if (!consentChecked.value) return
+
+  try {
+    const response = await fetch('https://api.telegram.org/bot' + '8027243391:AAHGXl9P0OZuEqt5L_Wcu9Ko7Q13-Zd32oE' + '/sendMessage', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: '591431818',
+        text: `🎯 Новая заявка с сайта!\n\n👤 Имя: ${formData.name}\n📱 Телефон: ${formData.phone}\n\n🌐 Источник: ${window.location.href}`,
+        parse_mode: 'HTML'
+      })
+    })
+
+    if (!response.ok) {
+      throw new Error('Ошибка отправки')
+    }
+
+    // Очищаем форму после успешной отправки
+    formData.name = ''
+    formData.phone = ''
+    consentChecked.value = false
+
+    // Показываем уведомление об успехе
+    alert(t('leadForm.success'))
+  } catch (e) {
+    // Показываем уведомление об ошибке
+    alert(t('leadForm.error'))
+  }
 }
 </script>
 
 <style scoped>
+.particle {
+  animation: particle-float 10s linear infinite;
+}
+
 @keyframes particle-float {
   0% {
     transform: translate(0, 0) rotate(0deg);

@@ -34,7 +34,7 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-03-30',
   i18n: {
-    baseUrl: 'https://francise.poveskenet.kz',
+    baseUrl: 'https://franchise.povestkenet.kz',
     defaultLocale: 'ru',
     detectBrowserLanguage: {
       useCookie: true,
@@ -58,9 +58,17 @@ export default defineNuxtConfig({
     ],
     lazy: true,
     langDir: 'locales',
-    strategy: 'prefix',
+    strategy: 'no_prefix',
+    trailingSlash: false,
     vueI18n: './i18n.config.ts',
     skipSettingLocaleOnNavigate: false,
+    customRoutes: 'config',
+    pages: {
+      'index': {
+        ru: '/ru.html',
+        kz: '/kz.html'
+      }
+    },
     bundle: {
       optimizeTranslationDirective: false
     }
@@ -70,7 +78,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'ru'
       },
-      titleTemplate: '%s | ПОВЕСТКАНЕТ - Франшиза юридической помощи призывникам',
+      titleTemplate: '%s | ПОВЕСТКЕНЕТ - Франшиза юридической помощи призывникам',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -81,17 +89,17 @@ export default defineNuxtConfig({
         { name: 'robots', content: 'index, follow' },
         { name: 'googlebot', content: 'index, follow' },
         { name: 'yandex', content: 'index, follow' },
-        { name: 'description', content: 'Франшиза юридической помощи призывникам. Помощь в получении отсрочки от армии. Подробная информация о франшизе, преимуществах и условиях сотрудничества.' },
-        { name: 'keywords', content: 'франшиза, юридическая помощь, призывники, отсрочка от армии, военный билет, бизнес' },
+        { name: 'description', content: 'Франшиза юридической помощи призывникам. Профессиональная правовая поддержка в рамках законодательства. Бизнес с высокой рентабельностью и быстрой окупаемостью.' },
+        { name: 'keywords', content: 'франшиза юридической помощи, франшиза призывникам, юридическая помощь призывникам, франшиза с высокой прибылью, бизнес в сфере права, военный билет, юридические услуги, франшиза в Казахстане, франшиза с быстрой окупаемостью, франшиза с поддержкой, франшиза с обучением, франшиза с маркетингом, франшиза с технической поддержкой, франшиза с готовой бизнес-моделью, франшиза с минимальными вложениями, франшиза с высокой рентабельностью, франшиза с возможностью масштабирования, франшиза с филиалами, франшиза с закрытой базой знаний, франшиза с регулярными обновлениями, франшиза с консультациями экспертов' },
         { name: 'author', content: 'ПОВЕСТКАНЕТ' },
         { property: 'og:title', content: 'ПОВЕСТКАНЕТ | Франшиза юридической помощи призывникам' },
-        { property: 'og:description', content: 'Франшиза юридической помощи призывникам. Помощь в получении отсрочки от армии. Подробная информация о франшизе, преимуществах и условиях сотрудничества.' },
+        { property: 'og:description', content: 'Франшиза юридической помощи призывникам. Профессиональная правовая поддержка в рамках законодательства. Бизнес с высокой рентабельностью.' },
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: 'https://francise.poveskenet.kz' },
         { property: 'og:image', content: 'https://francise.poveskenet.kz/og-image.jpg' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'ПОВЕСТКАНЕТ | Франшиза юридической помощи призывникам' },
-        { name: 'twitter:description', content: 'Франшиза юридической помощи призывникам. Помощь в получении отсрочки от армии.' },
+        { name: 'twitter:title', content: 'ПОВЕСТКЕНЕТ | Франшиза юридической помощи призывникам' },
+        { name: 'twitter:description', content: 'Франшиза юридической помощи призывникам. Профессиональная правовая поддержка в рамках законодательства.' },
         { name: 'twitter:image', content: 'https://francise.poveskenet.kz/og-image.jpg' }
       ],
       link: [
@@ -109,9 +117,9 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: ['/', '/index.html'],
+      routes: ['/', '/index.html', '/ru.html', '/kz.html'],
       crawlLinks: true,
-      ignore: ['/api'],
+      ignore: ['/api', '/ru/', '/kz/'],
       autoSubfolderIndex: false
     },
     compressPublicAssets: true,
@@ -122,6 +130,20 @@ export default defineNuxtConfig({
         prerender: true,
         cache: { 
           maxAge: 60 * 60 * 24 
+        }
+      },
+      '/ru.html': {
+        static: true,
+        prerender: true,
+        cache: {
+          maxAge: 60 * 60 * 24
+        }
+      },
+      '/kz.html': {
+        static: true,
+        prerender: true,
+        cache: {
+          maxAge: 60 * 60 * 24
         }
       },
       '/**': {
@@ -138,7 +160,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       site: {
-        url: 'https://francise.poveskenet.kz',
+        url: 'https://franchise.povestkenet.kz',
         name: 'ПОВЕСТКАНЕТ',
         description: 'Франшиза юридической помощи призывникам',
         defaultLocale: 'ru',
@@ -148,32 +170,24 @@ export default defineNuxtConfig({
             UserAgent: '*',
             Allow: '/',
             Disallow: ['/api/', '/admin/', '/private/'],
-            Sitemap: 'https://francise.poveskenet.kz/sitemap.xml'
+            Sitemap: 'https://franchise.povestkenet.kz/sitemap.xml'
           },
           sitemap: {
-            hostname: 'https://francise.poveskenet.kz',
+            hostname: 'https://franchise.povestkenet.kz',
             gzip: true,
             routes: [
-              '/ru',
-              '/kz',
-              '/ru/about',
-              '/kz/about',
-              '/ru/advantages',
-              '/kz/advantages',
-              '/ru/packages',
-              '/kz/packages',
-              '/ru/calculator',
-              '/kz/calculator',
-              '/ru/contacts',
-              '/kz/contacts'
+              '/ru.html',
+              '/kz.html',
+              '/index.html'
             ]
           }
         }
       },
       // Добавляем ID для аналитики
-      gaId: process.env.GA_ID || '',
-      ymId: process.env.YM_ID || '',
-      hotjarId: process.env.HOTJAR_ID || ''
+      ymId: process.env.YM_ID || '100749131',
+      // Добавляем конфигурацию для Telegram
+      telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || '8027243391:AAHGXl9P0OZuEqt5L_Wcu9Ko7Q13-Zd32oE',
+      telegramChatId: process.env.TELEGRAM_CHAT_ID || '591431818'
     }
   },
   ssr: true,
