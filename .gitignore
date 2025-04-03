@@ -33,5 +33,11 @@ mysql/data/*
 nginx/ssl/*
 !nginx/ssl/.gitkeep
 
+# Let's Encrypt сертификаты
+certbot/conf/*
+!certbot/conf/.gitkeep
+certbot/www/*
+!certbot/www/.gitkeep
+
 # Резервные копии
 backups/
