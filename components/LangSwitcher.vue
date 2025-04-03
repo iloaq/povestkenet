@@ -20,7 +20,7 @@
 
     <!-- WhatsApp кнопка -->
     <a 
-      href="https://wa.me/+77000000000" 
+      href="https://wa.me/77769959955" 
       target="_blank" 
       rel="noopener noreferrer"
       class="whatsapp-button"

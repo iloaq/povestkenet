@@ -1,5 +1,5 @@
 <template>
-  <section class="relative  flex items-center  overflow-hidden py-12 md:py-16 lg:py-20">
+  <section id="guarantees" class="relative  flex items-center  overflow-hidden py-12 md:py-16 lg:py-20">
     <!-- Фоновые элементы -->
     <div class="absolute inset-0">
       <!-- Анимированные частицы -->
@@ -74,7 +74,7 @@
 <script setup>
 const guarantees = [
   {
-    icon: 'pi pi-shield-check',
+    icon: 'pi pi-shield',
     title: 'profit',
     description: 'profit.description',
     features: 'profit.features'

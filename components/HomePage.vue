@@ -22,7 +22,7 @@
     <SuccessStory @scroll-to-form="scrollToForm" />
 
     <!-- Сравнение с конкурентами -->
-    <CompetitorsComparison @scroll-to-form="scrollToForm" />
+    <!-- <CompetitorsComparison @scroll-to-form="scrollToForm" /> -->
 
     <!-- Схема запуска -->
     <LaunchPlan @scroll-to-form="scrollToForm" />
@@ -47,7 +47,7 @@ import ProfitCalculator from '~/components/ProfitCalculator.vue'
 import TerritoryMap from '~/components/TerritoryMap.vue'
 import GuaranteesSection from '~/components/GuaranteesSection.vue'
 import SuccessStory from '~/components/SuccessStory.vue'
-import CompetitorsComparison from '~/components/CompetitorsComparison.vue'
+// import CompetitorsComparison from '~/components/CompetitorsComparison.vue'
 import LaunchPlan from '~/components/LaunchPlan.vue'
 import FranchisePackages from '~/components/FranchisePackages.vue'
 import FAQSection from '~/components/FAQSection.vue'
@@ -55,8 +55,15 @@ import LeadForm from '~/components/LeadForm.vue'
 
 // Для прокрутки к форме
 const formRef = ref<HTMLElement | null>(null)
+
 const scrollToForm = () => {
-  formRef.value?.scrollIntoView({ behavior: 'smooth' })
+  const formElement = document.getElementById('lead-form')
+  if (formElement) {
+    formElement.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    })
+  }
 }
 </script>
 

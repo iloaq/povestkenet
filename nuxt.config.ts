@@ -176,10 +176,10 @@ export default defineNuxtConfig({
         }
       },
       // Добавляем ID для аналитики
-      ymId: process.env.YM_ID || '100749131',
+      ymId: process.env.YM_ID,
       // Добавляем конфигурацию для Telegram
-      telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || '8027243391:AAHGXl9P0OZuEqt5L_Wcu9Ko7Q13-Zd32oE',
-      telegramChatId: process.env.TELEGRAM_CHAT_ID || '591431818'
+      telegramBotToken: process.env.TELEGRAM_BOT_TOKEN,
+      telegramChatId: process.env.TELEGRAM_CHAT_ID
     }
   },
   ssr: true,

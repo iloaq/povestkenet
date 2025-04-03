@@ -1,5 +1,5 @@
 <template>
-  <section class="relative flex items-center overflow-hidden py-12 md:py-16 lg:py-20">
+  <section id="business-model" class="relative flex items-center overflow-hidden py-12 md:py-16 lg:py-20">
    
 
     <div class="container mx-auto px-4 relative z-10">

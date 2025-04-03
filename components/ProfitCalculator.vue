@@ -1,5 +1,5 @@
 <template>
-  <section class="relative py-12 md:py-16 lg:py-20 flex items-center  overflow-hidden">
+  <section id="profit-calculator" class="relative py-12 md:py-16 lg:py-20 flex items-center  overflow-hidden">
 
     <div class="container mx-auto px-4 relative z-10">
       <!-- Заголовок -->
@@ -203,7 +203,7 @@ const selectedCity = ref(cities[0])
 const clientsCount = ref(7)
 
 // Расчет дохода
-const averageClientRevenue = 600000 // Средний чек с клиента (между 500 000 и 700 000)
+const averageClientRevenue = 700000 // Средний чек с клиента (между 500 000 и 700 000)
 
 const totalRevenue = computed(() => {
   return clientsCount.value * averageClientRevenue

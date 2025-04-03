@@ -1,5 +1,5 @@
 <template>
-  <section class="relative  flex items-center  overflow-hidden py-12 md:py-16">
+  <section id="success-story" class="relative  flex items-center  overflow-hidden py-12 md:py-16">
     <!-- Фоновые эффекты -->
     
     <div class="container mx-auto px-4 relative z-10">
@@ -32,7 +32,7 @@
           <div class="bg-gradient-to-r from-[#D50404]/10 to-transparent p-4 md:p-6 rounded-lg md:rounded-xl mb-6 md:mb-8 border border-[#D50404]/20">
             <div class="text-xs md:text-sm text-white/60 mb-1">{{ $t('successStory.income') }}</div>
             <div class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#D50404] to-[#FF0000] bg-clip-text text-transparent">
-              3 800 000 ₸
+              2 800 000 ₸
             </div>
           </div>
 
@@ -69,7 +69,7 @@
                  class="bg-white/[0.03] rounded-lg md:rounded-xl p-4 md:p-5 border border-white/[0.05] hover:bg-white/[0.05] transition-all duration-300">
               <div class="text-xs md:text-sm text-white/60 mb-1">{{ $t(`successStory.${stat}`) }}</div>
               <div class="text-xl md:text-2xl font-bold text-white/90">
-                {{ ['535 000 ₸', '7', '3 745 000 ₸', '2 800 000 ₸'][index] }}
+                {{ ['700 000 ₸', '7+', '5 745 000 ₸', '2 800 000 ₸'][index] }}
               </div>
               <div class="text-xs md:text-sm bg-gradient-to-r from-[#D50404] to-[#FF0000] bg-clip-text text-transparent mt-1">
                 {{ $t(`successStory.${stat}Description`) }}

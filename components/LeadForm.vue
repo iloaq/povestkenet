@@ -1,5 +1,5 @@
 <template>
-  <section class="relative  flex items-center  overflow-hidden py-12 md:py-16">
+  <section id="lead-form" class="relative  flex items-center  overflow-hidden py-12 md:py-16">
     <!-- Фоновые эффекты -->
     <div class="absolute inset-0">
       <!-- Анимированные частицы - используем фиксированные позиции -->
@@ -28,13 +28,6 @@
 
       <div class="max-w-2xl mx-auto">
         <div class="bg-white/[0.03] backdrop-blur-xl rounded-xl md:rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_rgba(0,0,0,0.12)] p-4 md:p-6 lg:p-8">
-          <!-- Таймер акции -->
-          <div class="bg-gradient-to-r from-[#D50404]/10 to-[#FF0000]/10 p-4 md:p-6 rounded-lg md:rounded-xl mb-6 md:mb-8">
-            <p class="text-base md:text-lg font-medium text-white/80">{{ $t('leadForm.timer.label') }}</p>
-            <div class="text-2xl md:text-4xl font-bold mt-2 bg-gradient-to-r from-[#D50404] to-[#FF0000] bg-clip-text text-transparent">
-              {{ $t('leadForm.timer.time') }}
-            </div>
-          </div>
 
           <!-- Форма -->
           <form @submit.prevent="handleSubmit" class="space-y-4 md:space-y-6">
@@ -183,6 +176,7 @@ import { ref, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
+const config = useRuntimeConfig()
 
 const consentChecked = ref(false)
 const formData = reactive({
@@ -193,14 +187,17 @@ const formData = reactive({
 const handleSubmit = async () => {
   if (!consentChecked.value) return
 
+  const botToken = config.public.telegramBotToken
+  const chatId = config.public.telegramChatId
+
   try {
-    const response = await fetch('https://api.telegram.org/bot' + '8027243391:AAHGXl9P0OZuEqt5L_Wcu9Ko7Q13-Zd32oE' + '/sendMessage', {
+    const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        chat_id: '591431818',
+        chat_id: chatId,
         text: `🎯 Новая заявка с сайта!\n\n👤 Имя: ${formData.name}\n📱 Телефон: ${formData.phone}\n\n🌐 Источник: ${window.location.href}`,
         parse_mode: 'HTML'
       })
