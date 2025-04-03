@@ -11,7 +11,7 @@ const schema = computed(() => ({
   "@type": "Franchise",
   "name": config.public.site.name,
   "description": config.public.site.description,
-  "franchiseFee": "2500000",
+  "franchiseFee": "7000000",
   "currency": "KZT",
   "areaServed": "KZ",
   "parentOrganization": {
@@ -20,14 +20,14 @@ const schema = computed(() => ({
     "url": config.public.site.url,
     "logo": `${config.public.site.url}/logo.png`,
     "sameAs": [
-      "https://t.me/poveskenet",
-      "https://instagram.com/poveskenet",
-      "https://wa.me/+77000000000"
+      "https://t.me/davidmalkhassyan",
+      "https://www.instagram.com/davidmalkhassyan/",
+      "https://wa.me/77769959955"
     ]
   },
   "offers": {
     "@type": "Offer",
-    "price": "2500000",
+    "price": "7000000",
     "priceCurrency": "KZT",
     "availability": "https://schema.org/InStock",
     "validFrom": "2024-03-30",
@@ -35,7 +35,7 @@ const schema = computed(() => ({
   },
   "image": `${config.public.site.url}/og-image.jpg`,
   "url": config.public.site.url,
-  "telephone": "+77000000000",
+  "telephone": "+77769959955",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "KZ"

@@ -1,5 +1,5 @@
 <template>
-  <section class="relative flex items-center  overflow-hidden py-12 md:py-16 lg:py-20">
+  <section id="why-now" class="relative flex items-center  overflow-hidden py-12 md:py-16 lg:py-20">
     <!-- Удаляем старый верхний разделитель и добавляем новые эффекты -->
     <div class="absolute inset-0">
       <!-- Анимированные частицы -->

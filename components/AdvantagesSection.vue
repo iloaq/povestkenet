@@ -1,5 +1,5 @@
 <template>
-  <section class="relative flex items-center overflow-hidden py-12 md:py-16 lg:py-20">
+  <section id="advantages" class="relative flex items-center overflow-hidden py-12 md:py-16 lg:py-20">
     <div class="container mx-auto px-4 relative z-10">
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 lg:mb-16 px-4">
         {{ $t('advantages.title1') }} <span class="text-[#D50404]">{{ $t('advantages.title2') }}</span>

@@ -16,13 +16,6 @@
             </div>
           </div>
         </div>
-        
-        <div class="bg-white/[0.03] backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-4 border border-white/[0.05] shadow-[0_8px_32px_rgba(0,0,0,0.12)] w-full lg:w-auto">
-          <div class="text-white/90 font-medium text-sm md:text-base">{{ $t('hero.timer') }}</div>
-          <div class="text-xl md:text-2xl font-bold bg-gradient-to-r from-[#D50404] to-[#FF0000] bg-clip-text text-transparent">
-            23:45:60
-          </div>
-        </div>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
