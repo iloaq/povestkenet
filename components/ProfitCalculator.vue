@@ -37,9 +37,9 @@
             </div>
             <Slider v-model="clientsCount" :min="1" :max="15" :step="1" class="w-full" />
             <div class="flex justify-between mt-2 text-xs md:text-sm">
-              <span class="text-white/40">Минимум: 1</span>
+              <span class="text-white/40">Мин: 1</span>
               <span class="text-white/40">Рекомендуемо: 7</span>
-              <span class="text-white/40">Максимум: 15</span>
+              <span class="text-white/40">Макс: 15</span>
             </div>
           </div>
 
@@ -54,7 +54,7 @@
         </div>
 
         <!-- Результаты расчета -->
-        <div class="bg-white/[0.03] backdrop-blur-xl rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/[0.05] shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
+        <div class="bg-white/[0.03] rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/[0.05] shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
           <div class="space-y-4 md:space-y-6">
             <!-- Общий доход -->
             <div class="bg-white/[0.03] backdrop-blur-xl rounded-lg md:rounded-xl p-4 md:p-6">
