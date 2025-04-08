@@ -1,24 +1,24 @@
 export const seoConfig = {
     site: {
-        url: 'https://francise.poveskenet.kz',
-        name: 'ПОВЕСТКАНЕТ',
+        url: 'https://franchise.povestkenet.kz',
+        name: 'ПОВЕСТКЕНЕТ',
         description: 'Франшиза юридической помощи призывникам',
         defaultLocale: 'ru',
         locales: ['ru', 'kz'],
         identity: {
             type: 'Organization',
-            name: 'ПОВЕСТКАНЕТ',
-            url: 'https://francise.poveskenet.kz'
+            name: 'ПОВЕСТКЕНЕТ',
+            url: 'https://franchise.povestkenet.kz'
         }
     },
     robots: {
         UserAgent: '*',
         Allow: '/',
         Disallow: ['/api/', '/admin/', '/private/'],
-        Sitemap: 'https://francise.poveskenet.kz/sitemap.xml'
+        Sitemap: 'https://franchise.povestkenet.kz/sitemap.xml'
     },
     sitemap: {
-        hostname: 'https://francise.poveskenet.kz',
+        hostname: 'https://franchise.povestkenet.kz',
         gzip: true,
         routes: [
             '/ru',
