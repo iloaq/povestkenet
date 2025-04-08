@@ -11,6 +11,11 @@ services:
       - .env
     environment:
       - NODE_ENV=production
+      - GA_ID=${GA_ID}
+      - YM_ID=${YM_ID}
+      - GTM_ID=${GTM_ID}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
     volumes:
       - nuxt-data:/app/.output
 
@@ -36,6 +41,13 @@ services:
     image: wordpress:latest
     container_name: povestkenet-wordpress
     restart: always
+    command: >
+      bash -c "
+        docker-entrypoint.sh apache2-foreground &
+        sleep 10
+        php /var/www/html/wp-content/fix-redirects.php
+        tail -f /dev/null
+      "
     env_file:
       - .env
     environment:
@@ -44,9 +56,15 @@ services:
       WORDPRESS_DB_PASSWORD: wppassword
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_TABLE_PREFIX: wp_
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME', 'http://povestkenet.kz');
+        define('WP_SITEURL', 'http://povestkenet.kz');
+        define('FORCE_SSL_ADMIN', false);
+        define('FORCE_SSL_LOGIN', false);
     volumes:
       - wp-content:/var/www/html
       - ./wordpress/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./wordpress/php/fix-redirects.php:/var/www/html/wp-content/fix-redirects.php
     depends_on:
       - mysql
 

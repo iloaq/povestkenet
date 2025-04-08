@@ -34,13 +34,13 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-03-30',
   i18n: {
-    baseUrl: 'http://franchise.povestkenet.kz',
+    baseUrl: 'https://franchise.povestkenet.kz',
     defaultLocale: 'ru',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
       redirectOn: 'root',
-      cookieSecure: false
+      cookieSecure: true
     },
     locales: [
       {
@@ -87,15 +87,12 @@ export default defineNuxtConfig({
         { property: 'og:title', content: 'ПОВЕСТКАНЕТ | Франшиза юридической помощи призывникам' },
         { property: 'og:description', content: 'Франшиза юридической помощи призывникам. Профессиональная правовая поддержка в рамках законодательства. Бизнес с высокой рентабельностью.' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: 'http://franchise.povestkenet.kz' },
-        { property: 'og:image', content: 'http://franchise.povestkenet.kz/og-image.jpg' },
+        { property: 'og:url', content: 'https://franchise.povestkenet.kz' },
+        { property: 'og:image', content: 'https://franchise.povestkenet.kz/og-image.jpg' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'ПОВЕСТКАНЕТ | Франшиза юридической помощи призывникам' },
         { name: 'twitter:description', content: 'Франшиза юридической помощи призывникам. Профессиональная правовая поддержка в рамках законодательства.' },
-        { name: 'twitter:image', content: 'http://franchise.povestkenet.kz/og-image.jpg' },
-        { name: 'description', content: 'Франшиза юридической помощи призывникам.' },
-        { property: 'og:title', content: 'ПОВЕСТКЕНЕТ | Франшиза юридической помощи призывникам' },
-        { property: 'og:description', content: 'Франшиза юридической помощи призывникам.' },
+        { name: 'twitter:image', content: 'http://franchise.povestkenet.kz/og-image.jpg' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -106,9 +103,7 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'canonical', href: 'http://franchise.povestkenet.kz' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap' },
-        { rel: 'alternate', hreflang: 'ru', href: 'https://franchise.povestkenet.kz/ru/' },
-        { rel: 'alternate', hreflang: 'kk', href: 'https://franchise.povestkenet.kz/kz/' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap' }
       ]
     }
   },
@@ -158,7 +153,7 @@ export default defineNuxtConfig({
     public: {
       site: {
         url: 'http://franchise.povestkenet.kz',
-        name: 'ПОВЕСТКЕНЕТ',
+        name: 'ПОВЕСТКАНЕТ',
         description: 'Франшиза юридической помощи призывникам',
         defaultLocale: 'ru',
         locales: ['ru', 'kz'],
@@ -167,10 +162,10 @@ export default defineNuxtConfig({
             UserAgent: '*',
             Allow: '/',
             Disallow: ['/api/', '/admin/', '/private/'],
-            Sitemap: 'http://franchise.povestkenet.kz/sitemap.xml'
+            Sitemap: 'https://franchise.povestkenet.kz/sitemap.xml'
           },
           sitemap: {
-            hostname: 'http://franchise.povestkenet.kz',
+            hostname: 'https://franchise.povestkenet.kz',
             gzip: true,
             routes: [
               '/ru',

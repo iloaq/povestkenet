@@ -4,6 +4,7 @@
 - Nuxt.js приложение (franchise.povestkenet.kz)
 - WordPress сайт (povestkenet.kz)
 - Nginx в качестве обратного прокси
+- Автоматическое получение SSL-сертификатов через Let's Encrypt
 
 ## Структура проекта
 
@@ -11,10 +12,15 @@
 .
 ├── docker-compose.yml     # Основной файл Docker Compose
 ├── Dockerfile             # Dockerfile для Nuxt.js приложения
+├── get-certificates.sh    # Скрипт для получения SSL-сертификатов
+├── renew-certificates.sh  # Скрипт для обновления SSL-сертификатов
 ├── nginx/                 # Конфигурация Nginx
 │   ├── conf.d/            # Конфигурационные файлы для виртуальных хостов
 │   ├── nginx.conf         # Основная конфигурация Nginx
 │   └── ssl/               # Директория для SSL-сертификатов
+├── certbot/               # Директории для Let's Encrypt
+│   ├── conf/              # Конфигурация и сертификаты
+│   └── www/               # Директория для проверки домена
 ├── wordpress/             # Файлы для WordPress
 │   ├── data/              # Данные WordPress (игнорируются в Git)
 │   ├── fix-permissions.sh # Скрипт для исправления прав доступа
@@ -41,12 +47,12 @@
 
 2. Создайте необходимые директории:
    ```bash
-   mkdir -p wordpress/data mysql/data nginx/ssl
+   mkdir -p wordpress/data mysql/data nginx/ssl certbot/conf certbot/www
    ```
 
 3. Настройте права доступа:
    ```bash
-   chmod +x wordpress/fix-permissions.sh
+   chmod +x wordpress/fix-permissions.sh get-certificates.sh
    ```
 
 4. Запустите контейнеры:
@@ -72,6 +78,29 @@
 127.0.0.1 povestkenet.kz
 ```
 
+## SSL-сертификаты Let's Encrypt
+
+### Получение сертификатов
+
+1. Убедитесь, что домены указывают на ваш сервер (настройки DNS A-записей)
+2. Запустите скрипт получения сертификатов:
+   ```bash
+   ./get-certificates.sh
+   ```
+3. При успешном получении сертификатов активируйте редирект на HTTPS
+
+### Автоматическое обновление
+
+Скрипт настраивает автоматическое обновление сертификатов через cron.
+Сертификаты будут проверяться и обновляться при необходимости.
+
+### Ручное обновление
+
+При необходимости сертификаты можно обновить вручную:
+```bash
+./renew-certificates.sh
+```
+
 ## Обслуживание
 
 ### Управление контейнерами
@@ -87,7 +116,7 @@ docker compose down
 docker compose logs
 
 # Просмотр логов конкретного сервиса
-docker compose logs [nginx|wordpress|mysql|nuxt-app]
+docker compose logs [nginx|wordpress|mysql|nuxt-app|certbot]
 ```
 
 ### Исправление прав доступа WordPress
@@ -106,6 +135,7 @@ docker compose logs [nginx|wordpress|mysql|nuxt-app]
 mkdir -p backups
 tar -czf backups/wordpress-data-$(date +%Y%m%d).tar.gz -C wordpress data
 tar -czf backups/mysql-data-$(date +%Y%m%d).tar.gz -C mysql data
+tar -czf backups/certbot-conf-$(date +%Y%m%d).tar.gz -C certbot conf
 ```
 
 ### Восстановление из резервной копии
@@ -113,6 +143,7 @@ tar -czf backups/mysql-data-$(date +%Y%m%d).tar.gz -C mysql data
 ```bash
 tar -xzf backups/wordpress-data-YYYYMMDD.tar.gz -C wordpress
 tar -xzf backups/mysql-data-YYYYMMDD.tar.gz -C mysql
+tar -xzf backups/certbot-conf-YYYYMMDD.tar.gz -C certbot
 ./wordpress/fix-permissions.sh
 docker compose restart
 ```
@@ -128,7 +159,9 @@ docker compose restart
 
 ## Настройка SSL (для продакшена)
 
-1. Получите SSL-сертификаты
-2. Поместите файлы сертификатов в директорию `nginx/ssl/`
-3. Настройте конфигурацию в `nginx/conf.d/default.conf`
-4. Перезапустите Nginx: `docker compose restart nginx` 
+Сертификаты Let's Encrypt настраиваются автоматически с помощью скрипта get-certificates.sh.
+В редких случаях, когда нужно использовать сторонние сертификаты:
+
+1. Поместите файлы сертификатов в директорию `nginx/ssl/`
+2. Настройте пути в `nginx/conf.d/default.conf`
+3. Перезапустите Nginx: `docker compose restart nginx` 
