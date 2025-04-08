@@ -191,13 +191,13 @@ const handleSubmit = async () => {
   const chatId = config.public.telegramChatId
 
   try {
-    const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    const response = await fetch(`https://api.telegram.org/bot8027243391:AAHGXl9P0OZuEqt5L_Wcu9Ko7Q13-Zd32oE/sendMessage`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        chat_id: chatId,
+        chat_id: '-4712809342',
         text: `🎯 Новая заявка с сайта!\n\n👤 Имя: ${formData.name}\n📱 Телефон: ${formData.phone}\n\n🌐 Источник: ${window.location.href}`,
         parse_mode: 'HTML'
       })
