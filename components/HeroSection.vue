@@ -58,21 +58,21 @@
 
         <!-- Правая колонка -->
         <div class="relative group">
-          <div class="aspect-video rounded-xl md:rounded-2xl overflow-hidden bg-white/[0.03] backdrop-blur-xl relative border border-white/[0.05] shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
-            <!-- Превью видео -->
-            <div class="absolute inset-0 bg-[url('/video-preview.jpg')] bg-cover bg-center"></div>
-            
-            <!-- Оверлей при наведении -->
-            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all duration-300"></div>
-            
-            <!-- Кнопка плей -->
-            <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-r from-[#D50404] to-[#FF0000] rounded-full flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-[0_0_30px_rgba(213,4,4,0.3)]">
-              <i class="pi pi-play text-white text-xl md:text-2xl ml-1"></i>
-            </button>
+          <div class="video-wrapper" style="position:relative; z-index: 1;">
+            <video
+              ref="video"
+              src="/video.webm"
+              controls
+              autoplay
+              muted
+              playsinline
+              style="width:100%;"
+              poster="/video-preview.jpg"
+            ></video>
           </div>
 
           <!-- Блики на видео -->
-          <div class="absolute -inset-1 bg-gradient-to-r from-[#D50404] to-[#FF0000] rounded-2xl opacity-0 group-hover:opacity-20 blur-2xl transition-all duration-300"></div>
+          <div class="absolute -inset-1 bg-gradient-to-r from-[#D50404] to-[#FF0000] rounded-2xl opacity-0 group-hover:opacity-20 blur-2xl transition-all duration-300 -z-1"></div>
         </div>
       </div>
     </div>
@@ -108,6 +108,16 @@
 </template>
 
 <script setup lang="ts">
+import { ref, nextTick } from 'vue'
+
+const videoLoaded = ref(false)
+const video = ref<HTMLVideoElement | null>(null)
+
+
+function onVideoLoaded() {
+  // Можно добавить логику, если нужно
+}
+
 defineEmits(['scroll-to-form'])
 </script>
 
